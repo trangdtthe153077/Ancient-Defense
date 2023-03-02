@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinhBoGenerator : MonoBehaviour
+public class SoldierGenerator : MonoBehaviour
 {
     public GameObject objectPrefab; // Prefab của đối tượng muốn tạo
     public int objectCount = 5; // Số lượng đối tượng cần tạo
