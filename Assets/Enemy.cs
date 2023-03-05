@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         else if (other.gameObject.CompareTag("Arrow"))
         {
             Arrow arrow = other.GetComponent<Arrow>();
-            TakeDamage(arrow.damage);
+           /* TakeDamage(arrow.damage);*/
         }
     }
 }
