@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GM : Archer{
     public float delay = 30f;
@@ -13,7 +14,8 @@ public class GM : Archer{
 
     void Start()
     {
-     
+        Button btn = GetComponent<Button>();
+        btn.onClick.AddListener(OnButtonClick);
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class GM : Archer{
     }
     public void OnButtonClick()
     {
+        Debug.Log("BUtton called");
         StartCoroutine(SkillIncreaseDamage());
     }
 
