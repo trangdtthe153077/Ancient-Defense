@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
@@ -29,7 +30,7 @@ public class EnemySpawn : MonoBehaviour
         maxSpawnY = Screen.height - SpawnBorderSize;
 
         spawnTimer = gameObject.AddComponent<Timer>();
-        spawnTimer.Duration = Random.Range(MinSpawnDelay, MaxSpawnDelay);
+       // spawnTimer.Duration = Random.Range(MinSpawnDelay, MaxSpawnDelay);
         spawnTimer.Run();
         
     }
@@ -40,17 +41,17 @@ public class EnemySpawn : MonoBehaviour
         if (spawnTimer.Finished)
         {
             SpawnEnemy();
-            spawnTimer.Duration = Random.Range(MinSpawnDelay, MaxSpawnDelay);
+         //   spawnTimer.Duration = Random.Range(MinSpawnDelay, MaxSpawnDelay);
             spawnTimer.Run();
         }
         
     }
     void SpawnEnemy()
     {
-        Vector3 location  = new Vector3(Random.Range(minSpawnX,maxSpawnX),Random.Range(minSpawnY,maxSpawnY),- Camera.main.transform.position.z);
-        Vector3 worldLocation = Camera.main.ScreenToWorldPoint(location);
-        GameObject enemy = Instantiate(prefabEnemy) as GameObject;
-        enemy.transform.position = worldLocation;
+      //  Vector3 location  = new Vector3(Random.Range(minSpawnX,maxSpawnX),Random.Range(minSpawnY,maxSpawnY),- Camera.main.transform.position.z);
+       // Vector3 worldLocation = Camera.main.ScreenToWorldPoint(location);
+       // GameObject enemy = Instantiate(prefabEnemy) as GameObject;
+       // enemy.transform.position = worldLocation;
 
 
     }
