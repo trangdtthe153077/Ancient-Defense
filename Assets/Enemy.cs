@@ -5,9 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
-    int health = 10;
-    public int maxHealth = 10;
-    private int currentHealth;
+
+    public int maxHealth = 15;
+    public int currentHealth;
 
 
 
@@ -43,7 +43,10 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Debug.Log("Auuu");
+        Debug.Log(damage);
+        Debug.Log(currentHealth);
         currentHealth -= damage;
+        Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -63,10 +66,11 @@ public class Enemy : MonoBehaviour
          
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-        else if (other.gameObject.CompareTag("Arrow"))
+    /*    else if (other.gameObject.CompareTag("Arrow"))
         {
+            Debug.Log("Trung dan");
             Arrow arrow = other.GetComponent<Arrow>();
-           /* TakeDamage(arrow.damage);*/
-        }
+            TakeDamage(arrow.damage);
+        }*/
     }
 }
