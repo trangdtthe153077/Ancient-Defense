@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5444519969069740028}
   - component: {fileID: 5444519969069740003}
   - component: {fileID: 5444519969069740002}
-  - component: {fileID: -3459479883080114167}
   m_Layer: 0
   m_Name: Enemy fly
   m_TagString: Enemy
@@ -142,7 +141,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3916345499859891633}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b4005d1157e8df43ab52cb4ec107ebf, type: 3}
   m_Name: 
@@ -151,18 +150,3 @@ MonoBehaviour:
   damage: 10
   attackDelay: 2
   player: {fileID: 0}
---- !u!114 &-3459479883080114167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3916345499859891633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5b57958f91b4f84f8912eaaf5bf5dec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  target: {fileID: 0}
-  attackDistance: 1
