@@ -50,6 +50,7 @@ public class GM : Archer{
         foreach (Archer archer in archers)
         {
             archer.Damage = archer.Damage + archer.Damage * skilldmg;
+            Debug.Log("DMG archer:" + archer.Damage);
         }
 
         yield return new WaitForSeconds(efftime);
