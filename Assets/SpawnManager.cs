@@ -19,6 +19,8 @@ public class SpawnManager : MonoBehaviour
     Timer timing;
     bool isSpawning = false;
     bool isBoss = false;
+
+    bool inGame = false;
     private void Start()
     {
         timing = GetComponent<Timer>();
@@ -30,7 +32,17 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-       
+        if(inGame==true)
+
+        {
+            SpawnInGame();
+        }
+      
+      
+    }
+
+    public void SpawnInGame()
+    {
         if (enemiesToSpawn > 0 && timer >= spawnInterval)
         {
             SpawnEnemy();
@@ -41,37 +53,42 @@ public class SpawnManager : MonoBehaviour
         timer += Time.deltaTime;
 
 
-        
-          if (enemiesToSpawn == 0)
+
+        if (enemiesToSpawn == 0)
         {
-            if(isSpawning==false)
+            if (isSpawning == false)
             {
                 timing.Run();
                 isSpawning = true;
-            }    
-         
-        
-            if(timing.Finished )
+            }
+
+
+            if (timing.Finished)
             {
                 Debug.Log("Finished");
-                if (currentWave == maxWave && currentLevel % 5 == 0 &&isBoss==false)
+                if (currentWave == maxWave && currentLevel % 5 == 0 && isBoss == false)
                 {
                     isBoss = true;
                     SpawnBoss();
                     Debug.Log("WIn the game");
                 }
-                else if (  currentWave < maxWave )
+                else if (currentWave < maxWave)
                 {
                     SpawnWave();
                     timing.Run();
                     Debug.Log("Wait");
                 }
-                isSpawning=false;
-            }    
-         
+                isSpawning = false;
+            }
+
         }
-      
-    }
+    }    
+
+    public void SetLevelOfGame(int lv)
+    {
+        currentLevel = lv;
+        inGame = true;
+    }    
 
     private void SpawnEnemy()
     {
