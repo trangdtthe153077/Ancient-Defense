@@ -85,12 +85,12 @@ GameObject:
   - component: {fileID: 8174482755239527051}
   - component: {fileID: 3377630251269296125}
   m_Layer: 0
-  m_Name: Witch 2
-  m_TagString: Untagged
+  m_Name: WitchPrefab
+  m_TagString: Witch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8174482755239527051
 Transform:
   m_ObjectHideFlags: 0
