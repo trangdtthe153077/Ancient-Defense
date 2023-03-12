@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-public class EnemyController : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public float speed = 5f;
     public Transform target;
@@ -96,6 +96,15 @@ public class EnemyController : MonoBehaviour
     {
         // Add code to damage the player here
     }
+    //void Fire()
+    //{
+    //    // Create a new arrow and set its position and rotation
+    //    GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
+
+    //    // Apply a force to the arrow to make it move forward
+    //    arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * 1500f);
+    //    arrow.GetComponent<Arrow>().damage = Mathf.RoundToInt(archer.damage);
+    //}
 }
 
 
