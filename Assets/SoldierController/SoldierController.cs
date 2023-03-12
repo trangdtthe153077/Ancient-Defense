@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-public class Enemy : MonoBehaviour
+
+public class SoldierController : MonoBehaviour
 {
     public float speed = 5f;
     public Transform target;
@@ -17,17 +18,14 @@ public class Enemy : MonoBehaviour
     private float attackTimer; // Thời gian từ lần tấn công cuối cùng
     public GameObject coinPrefab; // đối tượng tiền tệ
     public int coinCount = 1; // số lượng tiền tệ rơi ra
+
     private bool isDead = false; // kiểm tra quái đã chết hay chưa
 
-    public GameObject Player;
+    public GameObject player;
 
     void Start()
     {
         currentHealth = maxHealth;
-        /*   Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-           transform.position = new Vector3(screenBounds.x, Random.Range(-screenBounds.y, screenBounds.y), 0f);*/
-
-
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -47,32 +45,18 @@ public class Enemy : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1f);
             foreach (Collider2D collider in colliders)
             {
-                if (collider.tag == "Player")
-                {
-                    collider.GetComponent<Player>().TakeDamage(damage);
-                }
+                //if (collider.tag == "Player")
+                //{
+                //    collider.GetComponent<Player>().TakeDamage(damage);
+                //}
             }
         }
 
     }
-
-    /*    private void OnTriggerEnter2D(Collider2D collision)
-        {
-            Debug.Log("Collision");
-            if (collision.gameObject.CompareTag("Arrow"))
-            {
-                Arrow arrow = collision.gameObject.GetComponent<Arrow>();
-                 health = health;
-
-                Destroy(collision.gameObject);
-            }
-        }*/
-
-
+    
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -83,7 +67,7 @@ public class Enemy : MonoBehaviour
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
         Destroy(gameObject);
     }
-
+   
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
@@ -91,18 +75,8 @@ public class Enemy : MonoBehaviour
 
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-        /*    else if (other.gameObject.CompareTag("Arrow"))
-            {
-                Debug.Log("Trung dan");
-                Arrow arrow = other.GetComponent<Arrow>();
-                TakeDamage(arrow.damage);
-            }*/
-    }
-}
-    
-    /*    else if (other.gameObject.CompareTag("Arrow"))
+        else if (other.gameObject.CompareTag("Arrow"))
         {
-            Debug.Log("Trung dan");
             Arrow arrow = other.GetComponent<Arrow>();
             TakeDamage(arrow.damage);
         }
@@ -124,15 +98,6 @@ public class Enemy : MonoBehaviour
     {
         // Add code to damage the player here
     }
-    //void Fire()
-    //{
-    //    // Create a new arrow and set its position and rotation
-    //    GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
-
-    //    // Apply a force to the arrow to make it move forward
-    //    arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * 1500f);
-    //    arrow.GetComponent<Arrow>().damage = Mathf.RoundToInt(archer.damage);
-    //}
 }
 
 
