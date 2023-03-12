@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Profiling;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -11,28 +13,31 @@ public class Arrow : MonoBehaviour
     Rigidbody2D rb;
     Archer archer;
     public int damage;
+    Vector2 startPos;
+    Vector3 nextPos;
+
+    int arcHeight = 5;
+
+
     void Start()
     {
-         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0.3f;
+        rb = GetComponent<Rigidbody2D>();
+        damage = 5;
+        /*      rb.gravityScale = 0.3f;*/
         Destroy(gameObject, 3);
-    }
 
-    private void Update()
+        startPos = transform.position;
+    }
+    void Update()
     {
 
-        if (lateStartX == false)
-        {
-            x = transform.localEulerAngles.z;
-            lateStartX = true;
-        }
-        Vector2 direction =  rb.velocity;
-        float angle= Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+        /*        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
+        transform.rotation= Quaternion.Euler(0, 0, Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg);
 
-        transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
+
+
     }
-
-    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,7 +47,10 @@ public class Arrow : MonoBehaviour
         {
             Debug.Log("Take damage");
             enemy.TakeDamage(damage);
+           
         }
         Destroy(gameObject);
     }
+
+
 }

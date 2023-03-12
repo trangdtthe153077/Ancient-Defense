@@ -5,18 +5,18 @@ public class AutoArcher : MonoBehaviour
 {
     public GameObject arrowPrefab;
     public float fireInterval;
-    public float detectionRange = 10000f;
+    public float detectionRange = 100000f;
     private float timer;
-
+    public float fireAngle = 5f;
     Archer archer;
     private void Start()
     {
-        float distance = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height / 2f)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height / 2f)));
-        detectionRange = distance;
+       /* float distance = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height / 2f)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height / 2f)));
+        detectionRange = distance;*/
 
-         archer  = GetComponent<Archer>();
-        fireInterval = archer.speed;
-    
+        archer = GetComponent<Archer>();
+        fireInterval = archer.Speed;
+
     }
     void Update()
     {
@@ -32,17 +32,17 @@ public class AutoArcher : MonoBehaviour
             // Aim the archer towards the enemy
             if (closestEnemy != null)
             {
-                Vector3 targetDirection = closestEnemy.transform.position - transform.position;
-                transform.right = targetDirection.normalized;
-
-                // Fire an arrow
-                Fire();
+                Vector3 targetPosition = closestEnemy.transform.position;
+                // adjust for the height of the enemy
+                Fire(targetPosition);
             }
 
             // Reset the timer
             timer = 0f;
         }
     }
+
+
 
     GameObject FindClosestEnemy()
     {
@@ -66,14 +66,12 @@ public class AutoArcher : MonoBehaviour
         return closestEnemy;
     }
 
-    void Fire()
+    void Fire(Vector3 target)
     {
-        // Create a new arrow and set its position and rotation
-        GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
+        GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+        Vector3 direction = target - transform.position;
 
-        // Apply a force to the arrow to make it move forward
-        arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * 1500f);
-        arrow.GetComponent<Arrow>().damage= Mathf.RoundToInt(archer.damage);
+        arrow.GetComponent<Rigidbody2D>().velocity = direction * 3f;
+
     }
-
 }
