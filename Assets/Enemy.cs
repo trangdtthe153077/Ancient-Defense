@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -73,8 +74,9 @@ public class Enemy : MonoBehaviour
 
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-        else if (other.gameObject.CompareTag("Arrow"))
+    /*    else if (other.gameObject.CompareTag("Arrow"))
         {
+            Debug.Log("Trung dan");
             Arrow arrow = other.GetComponent<Arrow>();
             TakeDamage(arrow.damage);
         }
@@ -105,7 +107,12 @@ public class Enemy : MonoBehaviour
     //    arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * 1500f);
     //    arrow.GetComponent<Arrow>().damage = Mathf.RoundToInt(archer.damage);
     //}
+    */
+    }
+    
 }
+
+    
 
 
 

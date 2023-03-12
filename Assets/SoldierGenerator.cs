@@ -6,7 +6,7 @@ public class SoldierGenerator : MonoBehaviour
 {
     public GameObject objectPrefab; // Prefab của đối tượng muốn tạo
     public int objectCount = 5; // Số lượng đối tượng cần tạo
-    public float spacing = 0.2f; // Khoảng cách giữa các đối tượng
+    public float spacing = 0.5f; // Khoảng cách giữa các đối tượng
     public float speed = 2f; // Tốc độ di chuyển của đối tượng
 
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class SoldierGenerator : MonoBehaviour
 
             // Đặt vị trí của đối tượng
             float xPos = -5f + i * spacing;
-            float yPos = -3f; // Đặt vị trí Y tại đáy màn hình
+            float yPos = -4f; // Đặt vị trí Y tại đáy màn hình
             obj.transform.position = new Vector3(xPos, yPos, 0f);
         }
     }

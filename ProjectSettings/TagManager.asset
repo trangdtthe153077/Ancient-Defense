@@ -7,6 +7,14 @@ TagManager:
   - Enemy
   - Arrow
   - Ground
+  - SpawnManager
+  - ArcherManager
+  - GM
+  - Witch
+  - TX
+  - SavingObject
+  - Arin
+  - TH
   layers:
   - Default
   - TransparentFX
