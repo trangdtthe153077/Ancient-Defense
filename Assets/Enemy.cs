@@ -14,10 +14,10 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-     /*   Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        transform.position = new Vector3(screenBounds.x, Random.Range(-screenBounds.y, screenBounds.y), 0f);*/
+        /*   Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+           transform.position = new Vector3(screenBounds.x, Random.Range(-screenBounds.y, screenBounds.y), 0f);*/
 
-   
+
     }
 
     // Update is called once per frame
@@ -27,19 +27,19 @@ public class Enemy : MonoBehaviour
         /* GetComponent<Rigidbody2D>().AddForce(-transform.right * 0.5f);*/
     }
 
-/*    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Collision");
-        if (collision.gameObject.CompareTag("Arrow"))
+    /*    private void OnTriggerEnter2D(Collider2D collision)
         {
-            Arrow arrow = collision.gameObject.GetComponent<Arrow>();
-             health = health;
-         
-            Destroy(collision.gameObject);
-        }
-    }*/
+            Debug.Log("Collision");
+            if (collision.gameObject.CompareTag("Arrow"))
+            {
+                Arrow arrow = collision.gameObject.GetComponent<Arrow>();
+                 health = health;
 
-    
+                Destroy(collision.gameObject);
+            }
+        }*/
+
+
     public void TakeDamage(int damage)
     {
         Debug.Log("Auuu");
@@ -63,14 +63,14 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-         
+
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-    /*    else if (other.gameObject.CompareTag("Arrow"))
-        {
-            Debug.Log("Trung dan");
-            Arrow arrow = other.GetComponent<Arrow>();
-            TakeDamage(arrow.damage);
-        }*/
+        /*    else if (other.gameObject.CompareTag("Arrow"))
+            {
+                Debug.Log("Trung dan");
+                Arrow arrow = other.GetComponent<Arrow>();
+                TakeDamage(arrow.damage);
+            }*/
     }
 }
