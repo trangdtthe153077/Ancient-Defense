@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SoldierGenerator : MonoBehaviour
 {
-    public int objectCount ; // Số lượng đối tượng cần tạo
-    public float spacing ; // Khoảng cách giữa các đối tượng
-    public float speed ; // Tốc độ di chuyển của đối tượng
+    public int objectCount ; 
+    public float spacing ; 
+    public float speed ; 
     public GameObject walkAnimation;
     public GameObject attackAnimation;
     private bool isAttacking = false;
