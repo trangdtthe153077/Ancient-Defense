@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2706579340762462634}
   m_Layer: 0
   m_Name: Enemy fly
-  m_TagString: Enemy
+  m_TagString: Enemy fly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,6 +155,7 @@ MonoBehaviour:
   attackDelay: 2
   coinPrefab: {fileID: 0}
   coinCount: 1
+  hasFoundPlayer: 0
   Player: {fileID: 0}
 --- !u!114 &2706579340762462634
 MonoBehaviour:
@@ -168,6 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec5811e7716f3e4b8cda924bfbc16fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 5844874308236573403, guid: a28ca0af3cd418e40af943492d6a37d7, type: 3}
+  arrowPrefab: {fileID: 1115332065263701755, guid: 3ebd69347b627ed419b74923c6749f58, type: 3}
   fireInterval: 0
   detectionRange: 10000
