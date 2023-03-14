@@ -65,20 +65,30 @@ public class ArcherManager : MonoBehaviour
 
     public void OnClickSlot1()
     {
-        if (ChangeCharDetailsCanvas.gameObject.activeSelf == false &&gameStateController.GetGameState()== GameState.Waiting)
+
+        if (ChangeCharDetailsCanvas.gameObject.activeSelf == false && gameStateController.GetGameState() == GameState.Waiting)
         {
             ChangeCharCanvas.gameObject.SetActive(true);
             changeCharacterCanvas.setCurrentSlot(1);
+        }
+        else
+        {
+            UseSkill(1);
         }
     }
     public void OnClickSlot2()
     {
         if (ChangeCharDetailsCanvas.gameObject.activeSelf == false && gameStateController.GetGameState() == GameState.Waiting)
         {
+            Debug.Log("current: " + gameStateController.GetGameState());
             Debug.Log("Game are waiting");
             ChangeCharCanvas.gameObject.SetActive(true);
             Debug.Log(ChangeCharCanvas.gameObject.tag);
             changeCharacterCanvas.setCurrentSlot(2);
+        }
+        else
+        {
+            UseSkill(2);
         }
     }
     public void OnClickSlot3()
@@ -88,6 +98,10 @@ public class ArcherManager : MonoBehaviour
             ChangeCharCanvas.gameObject.SetActive(true);
             changeCharacterCanvas.setCurrentSlot(3);
         }
+        else
+        {
+            UseSkill(3);
+        }
     }
     public void OnClickSlot4()
     {
@@ -96,15 +110,20 @@ public class ArcherManager : MonoBehaviour
             ChangeCharCanvas.gameObject.SetActive(true);
             changeCharacterCanvas.setCurrentSlot(4);
         }
+        else
+        {
+            UseSkill(4);
+        }
     }
 
     public void UseSkill(int pos)
     {
-        if (archer[pos].tag=="GM")
+        if (archer[pos].tag == "GM")
         {
             archer[pos].GetComponent<GM>().OnButtonClick();
-        }    
-    }    
+        }
+     
+    }
 
     public void ChangeArcher(int arcNum, int pos)
     {

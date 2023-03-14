@@ -8,7 +8,7 @@ public class GameStateController : MonoBehaviour
     // Start is called before the first frame update
 
     public enum GameState { Waiting, Playing }
-    private GameState currentState;
+    public GameState currentState;
     public int gameLevel=5;
     SpawnManager spawnManager;
 

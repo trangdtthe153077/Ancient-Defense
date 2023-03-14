@@ -18,6 +18,7 @@ TagManager:
   - Char-Details
   - Change-Char
   - GameState
+  - ChangeChar
   layers:
   - Default
   - TransparentFX

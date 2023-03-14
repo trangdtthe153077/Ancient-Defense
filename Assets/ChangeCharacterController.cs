@@ -45,13 +45,7 @@ public class ChangeCharacterController : MonoBehaviour
 
     public void OnClickSlot1()
     {
-        if (gameStateController.GetGameState() == GameState.Playing)
-        {
-            manager.UseSkill(1);
-        }
-
-        else
-        {
+    
             if (canvasDetails.gameObject.activeSelf == false)
             {
                 canvas.gameObject.SetActive(false);
@@ -64,18 +58,13 @@ public class ChangeCharacterController : MonoBehaviour
                 savingObject.setCurrentArcNum(1);
                 canvasDetails.gameObject.SetActive(true);
             }
-        }
+
 
 
     }
     public void OnClickSlot2()
     {
-        if (gameStateController.GetGameState() == GameState.Playing)
-        {
-            manager.UseSkill(2);
-        }
-        else
-        {
+       
             if (canvasDetails.gameObject.activeSelf == false)
             {
                 canvas.gameObject.SetActive(false);
@@ -85,19 +74,14 @@ public class ChangeCharacterController : MonoBehaviour
                 level.SetText("Level: 20");
                 savingObject.setCurrentArcNum(2);
                 canvasDetails.gameObject.SetActive(true);
-            }
+      
         }
 
     }
 
     public void OnClickSlot3()
     {
-        if (gameStateController.GetGameState() == GameState.Playing)
-        {
-            manager.UseSkill(3);
-        }
-        else
-        {
+        
             if (canvasDetails.gameObject.activeSelf == false)
             {
                 canvas.gameObject.SetActive(false);
@@ -107,18 +91,13 @@ public class ChangeCharacterController : MonoBehaviour
                 level.SetText("Level: 20");
                 savingObject.setCurrentArcNum(3);
                 canvasDetails.gameObject.SetActive(true);
-            }
+         
         }
 
     }
     public void OnClickSlot4()
     {
-        if (gameStateController.GetGameState() == GameState.Playing)
-        {
-            manager.UseSkill(4);
-        }
-        else
-        {
+      
             if (canvasDetails.gameObject.activeSelf == false)
             {
                 canvas.gameObject.SetActive(false);
@@ -128,18 +107,13 @@ public class ChangeCharacterController : MonoBehaviour
                 level.SetText("Level: 20");
                 savingObject.setCurrentArcNum(4);
                 canvasDetails.gameObject.SetActive(true);
-            }
+    
         }
     }
 
     public void OnClickSlot5()
     {
-        if (gameStateController.GetGameState() == GameState.Playing)
-        {
-            manager.UseSkill(5);
-        }
-        else
-        {
+        
             if (canvasDetails.gameObject.activeSelf == false)
             {
                 canvas.gameObject.SetActive(false);
@@ -149,7 +123,7 @@ public class ChangeCharacterController : MonoBehaviour
                 level.SetText("Level: 20");
                 savingObject.setCurrentArcNum(5);
                 canvasDetails.gameObject.SetActive(true);
-            }
+     
         }
     
     }
