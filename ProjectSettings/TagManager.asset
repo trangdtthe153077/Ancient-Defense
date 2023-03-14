@@ -15,6 +15,10 @@ TagManager:
   - SavingObject
   - Arin
   - TH
+  - Char-Details
+  - Change-Char
+  - GameState
+  - ChangeChar
   layers:
   - Default
   - TransparentFX

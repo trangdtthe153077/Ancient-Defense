@@ -7,8 +7,8 @@ public class GameStateController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private enum GameState { Waiting, Playing }
-    private GameState currentState;
+    public enum GameState { Waiting, Playing }
+    public GameState currentState;
     public int gameLevel=5;
     SpawnManager spawnManager;
 
@@ -22,6 +22,7 @@ public class GameStateController : MonoBehaviour
 
         spawnManager = GameObject.FindWithTag("SpawnManager").GetComponent<SpawnManager>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -44,6 +45,13 @@ public class GameStateController : MonoBehaviour
     {
         // Change state to Playing when user clicks play button
         currentState = GameState.Playing;
+        Debug.Log(currentState+"Playing");
         playBtn.GetComponentInChildren<Text>().text = "Stop";
+    }
+
+    public GameState GetGameState()
+    {
+        
+        return currentState;
     }
 }
