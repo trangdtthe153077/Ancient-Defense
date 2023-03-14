@@ -19,6 +19,7 @@ TagManager:
   - Change-Char
   - GameState
   - ChangeChar
+  - Tower
   layers:
   - Default
   - TransparentFX
