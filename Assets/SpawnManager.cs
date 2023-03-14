@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject enemyFlyPrefab;
+
     public float waveInterval=10;
     public float spawnInterval;
     public int maxEnemiesPerWave = 10;
@@ -94,6 +96,8 @@ public class SpawnManager : MonoBehaviour
     {
       var enemy=  Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         enemy.tag = "Enemy";
+        var enemyfly = Instantiate(enemyFlyPrefab, transform.position, Quaternion.identity);
+        enemyfly.tag = "Enemy fly";
     }
 
     private void SpawnBoss()

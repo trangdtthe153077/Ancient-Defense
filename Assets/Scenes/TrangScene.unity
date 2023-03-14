@@ -5143,6 +5143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3335849351933705699, guid: ccd18da45441be448b632bb44c922adc, type: 3}
+  enemyFlyPrefab: {fileID: 3916345499859891633, guid: 7bf9a071e0a99564e969ccb3ff450101, type: 3}
   waveInterval: 10
   spawnInterval: 1
   maxEnemiesPerWave: 10
