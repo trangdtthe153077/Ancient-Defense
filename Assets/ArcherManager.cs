@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameStateController;
 
 public class ArcherManager : MonoBehaviour
 {
@@ -31,19 +32,20 @@ public class ArcherManager : MonoBehaviour
     GameObject varA;
     string tagName;
     public Canvas ChangeCharCanvas;
+    public Canvas ChangeCharDetailsCanvas;
     SavingObject changeCharacterCanvas;
-
+    GameStateController gameStateController;
     // Start is called before the first frame update
     void Start()
     {
         changeCharacterCanvas = GameObject.FindGameObjectWithTag("SavingObject").GetComponent<SavingObject>();
-       
-        
-        archer = new GameObject[] { null, archer1, archer2, archer3, archer4, archer5 };
+        gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
+
+        archer = new GameObject[5];
 
         ChangeCharCanvas.gameObject.SetActive(false);
 
-      if(  changeCharacterCanvas.getIsSpawn()==false)
+        if (  changeCharacterCanvas.getIsSpawn()==false)
         {
             varA = Instantiate(archer1, pos1.position, Quaternion.identity);
             var arc2 = Instantiate(archer2, pos2.position, Quaternion.identity);
@@ -63,14 +65,46 @@ public class ArcherManager : MonoBehaviour
 
     public void OnClickSlot1()
     {
-        ChangeCharCanvas.gameObject.SetActive(true);
-        changeCharacterCanvas.setCurrentSlot(1);
+        if (ChangeCharDetailsCanvas.gameObject.activeSelf == false &&gameStateController.GetGameState()== GameState.Waiting)
+        {
+            ChangeCharCanvas.gameObject.SetActive(true);
+            changeCharacterCanvas.setCurrentSlot(1);
+        }
     }
     public void OnClickSlot2()
     {
-        ChangeCharCanvas.gameObject.SetActive(true);
-        changeCharacterCanvas.setCurrentSlot(2);
+        if (ChangeCharDetailsCanvas.gameObject.activeSelf == false && gameStateController.GetGameState() == GameState.Waiting)
+        {
+            Debug.Log("Game are waiting");
+            ChangeCharCanvas.gameObject.SetActive(true);
+            Debug.Log(ChangeCharCanvas.gameObject.tag);
+            changeCharacterCanvas.setCurrentSlot(2);
+        }
     }
+    public void OnClickSlot3()
+    {
+        if (ChangeCharDetailsCanvas.gameObject.activeSelf == false && gameStateController.GetGameState() == GameState.Waiting)
+        {
+            ChangeCharCanvas.gameObject.SetActive(true);
+            changeCharacterCanvas.setCurrentSlot(3);
+        }
+    }
+    public void OnClickSlot4()
+    {
+        if (ChangeCharDetailsCanvas.gameObject.activeSelf == false && gameStateController.GetGameState() == GameState.Waiting)
+        {
+            ChangeCharCanvas.gameObject.SetActive(true);
+            changeCharacterCanvas.setCurrentSlot(4);
+        }
+    }
+
+    public void UseSkill(int pos)
+    {
+        if (archer[pos].tag=="GM")
+        {
+            archer[pos].GetComponent<GM>().OnButtonClick();
+        }    
+    }    
 
     public void ChangeArcher(int arcNum, int pos)
     {
@@ -121,23 +155,29 @@ public class ArcherManager : MonoBehaviour
                 tempPos = pos4;
                 break;
         }
+        Debug.Log("call");
 
-        for (int i = 0; i < archer.Length; i++)
+        for (int i = 1; i < archer.Length; i++)
         {
-            if (archer[i] != null && archer[i].gameObject==tempArc)
+            Debug.Log(tagName);
+            if (archer[i] != null && archer[i].gameObject.tag==tagName)
             {
                 var a = GameObject.FindGameObjectWithTag(tagName);
                 if(a!= null)
                 Destroy(a);
-
+                Debug.Log("tag" + i +archer[i].tag);
+/*           var b = GameObject.FindGameObjectWithTag(archer[i].tag);
            
-                archer[i] = null;
+Destroy(b);
+                Debug.Log("call");*/
+          
             }
         }
-        archer[pos].SetActive(false);
+      
 
         if (archer[pos] != null)
         {
+            archer[pos].SetActive(false);
             Destroy(archer[pos]); // Destroy the current archer instance
         }
         var arc = Instantiate(tempArc, tempPos.position, Quaternion.identity);

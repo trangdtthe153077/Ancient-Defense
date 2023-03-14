@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameStateController;
 
 public class GM : Archer{
     public float delay = 30f;
@@ -11,11 +12,14 @@ public class GM : Archer{
     public float level = 1;
     public float skilldmg = (float)(2.5 / 100);
     public float efftime = 5;
-
+    public Button btn;
+    GameStateController gameStateController;
     void Start()
     {
-        Button btn = GetComponent<Button>();
+        Debug.Log("bonk");
+         btn = GetComponent<Button>();
         btn.onClick.AddListener(OnButtonClick);
+        gameStateController  = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
     }
 
     // Update is called once per frame
@@ -37,6 +41,11 @@ public class GM : Archer{
         efftime += (float)0.2;
 
     }
+    public void wagaga()
+    {
+        Debug.Log("BUtton called");
+        
+    }
     public void OnButtonClick()
     {
         Debug.Log("BUtton called");
@@ -45,7 +54,9 @@ public class GM : Archer{
 
     public IEnumerator SkillIncreaseDamage()
     {
-        Archer[] archers = FindObjectsOfType<Archer>();
+      
+
+            Archer[] archers = FindObjectsOfType<Archer>();
         
         foreach (Archer archer in archers)
         {
@@ -60,5 +71,6 @@ public class GM : Archer{
         {
             archer.Damage = archer.Basedmg;
         }
+      
     }
 }
