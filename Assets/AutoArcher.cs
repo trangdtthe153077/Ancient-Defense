@@ -34,6 +34,7 @@ public class AutoArcher : MonoBehaviour
             {
                 Vector3 targetPosition = closestEnemy.transform.position;
                 // adjust for the height of the enemy
+                Debug.Log("Fire");
                 Fire(targetPosition);
             }
 
@@ -48,6 +49,7 @@ public class AutoArcher : MonoBehaviour
     {
         // Find all enemies within range
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Debug.Log("Found!");
         GameObject closestEnemy = null;
         float closestDistance = Mathf.Infinity;
 
