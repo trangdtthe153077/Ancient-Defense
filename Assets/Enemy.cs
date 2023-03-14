@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+
 using UnityEngine;
 public class Enemy : MonoBehaviour
 {
@@ -76,41 +76,7 @@ public class Enemy : MonoBehaviour
         }
     }
 }
-    /*    else if (other.gameObject.CompareTag("Arrow"))
-        {
-            Debug.Log("Trung dan");
-            Arrow arrow = other.GetComponent<Arrow>();
-            TakeDamage(arrow.damage);
-        }
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-        //    Tiền sẽ rơi ra tại vị trí hiện tại của quái vật
-        //    Instantiate(coinPrefab, transform.position, Quaternion.identity);
-        //    Destroy quái vật
-        //    Destroy(gameObject);
-        //}
-    }
-    void MoveTowardsPlayer()
-    {
-        Vector2 direction = target.position - transform.position;
-        rb.velocity = direction.normalized * speed;
-    }
-
-    void Attack()
-    {
-        // Add code to damage the player here
-    }
-    //void Fire()
-    //{
-    //    // Create a new arrow and set its position and rotation
-    //    GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
-
-    //    // Apply a force to the arrow to make it move forward
-    //    arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * 1500f);
-    //    arrow.GetComponent<Arrow>().damage = Mathf.RoundToInt(archer.damage);
-    //}
-}
-
+    
 
 
 
