@@ -7,7 +7,7 @@ public class SavingObject : MonoBehaviour
     public int currentSlot;
     public int currentArcNum;
     public bool isSpawn;
-
+    public Canvas canvasDetails;
     public int getCurrentSlot()
     {
         return currentSlot;
@@ -36,7 +36,9 @@ public class SavingObject : MonoBehaviour
 
     void Start()
     {
-        
+        canvasDetails = GameObject.FindGameObjectWithTag("Char-Details").GetComponent<Canvas>();
+        canvasDetails.gameObject.SetActive(false);
+        Debug.Log("Off");
     }
 
     // Update is called once per frame

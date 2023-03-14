@@ -1,59 +1,50 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
+
 public class Enemy : MonoBehaviour
 {
-    public float speed = 5f;
-    public Transform target;
-    public float attackDistance = 1f;
+    // Start is called before the first frame update
 
-    private Rigidbody2D rb;
-    int health = 10;
-    public int maxHealth = 10;
-    private int currentHealth;
-    public int damage = 10; // Lượng sát thương gây ra khi tấn công
-    public float attackDelay = 2f; // Thời gian giữa hai lần tấn công
-    private float attackTimer; // Thời gian từ lần tấn công cuối cùng
-    public GameObject coinPrefab; // đối tượng tiền tệ
-    public int coinCount = 1; // số lượng tiền tệ rơi ra
-    private bool isDead = false; // kiểm tra quái đã chết hay chưa
+    public int maxHealth = 15;
+    public int currentHealth;
 
-    public GameObject Player;
+
 
     void Start()
     {
         currentHealth = maxHealth;
+        /*   Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+           transform.position = new Vector3(screenBounds.x, Random.Range(-screenBounds.y, screenBounds.y), 0f);*/
 
-        rb = GetComponent<Rigidbody2D>();
+
     }
 
+    // Update is called once per frame
     void Update()
     {
-        // quái di chuyển sang trái
         transform.Translate(Vector3.left * 3f * Time.deltaTime);
         /* GetComponent<Rigidbody2D>().AddForce(-transform.right * 0.5f);*/
-        // Tính toán thời gian giữa hai lần tấn công
-        attackTimer += Time.deltaTime;
-        if (attackTimer >= attackDelay)
-        {
-            attackTimer = 0f;
-
-            // Tấn công nếu người chơi ở trong vùng va chạm
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1f);
-            foreach (Collider2D collider in colliders)
-            {
-                if (collider.tag == "Player")
-                {
-                    collider.GetComponent<Player>().TakeDamage(damage);
-                }
-            }
-        }
-
     }
+
+    /*    private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log("Collision");
+            if (collision.gameObject.CompareTag("Arrow"))
+            {
+                Arrow arrow = collision.gameObject.GetComponent<Arrow>();
+                 health = health;
+
+                Destroy(collision.gameObject);
+            }
+        }*/
+
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("Auuu");
+        Debug.Log(damage);
+        Debug.Log(currentHealth);
         currentHealth -= damage;
         Debug.Log(currentHealth);
         if (currentHealth <= 0)
@@ -61,6 +52,7 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
+
     private void Die()
     {
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
@@ -74,6 +66,12 @@ public class Enemy : MonoBehaviour
 
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
+        /*    else if (other.gameObject.CompareTag("Arrow"))
+            {
+                Debug.Log("Trung dan");
+                Arrow arrow = other.GetComponent<Arrow>();
+                TakeDamage(arrow.damage);
+            }*/
     }
 }
     

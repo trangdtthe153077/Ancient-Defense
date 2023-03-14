@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c746e0e07f0b7114cbf0cd3969c3ff35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 5224833501749543036, guid: 23298095d3456c842bcd27f21dda5724, type: 3}
+  arrowPrefab: {fileID: 1115332065263701755, guid: 3ebd69347b627ed419b74923c6749f58, type: 3}
   fireInterval: 0
   detectionRange: 10000
   fireAngle: 5
