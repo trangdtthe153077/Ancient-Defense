@@ -97,7 +97,7 @@ public class SpawnManager : MonoBehaviour
       var enemy=  Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         enemy.tag = "Enemy";
         var enemyfly = Instantiate(enemyFlyPrefab, transform.position, Quaternion.identity);
-        enemy.tag = "Enemy fly";
+        enemyfly.tag = "Enemy fly";
     }
 
     private void SpawnBoss()

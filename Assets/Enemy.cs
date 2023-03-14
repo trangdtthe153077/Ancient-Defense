@@ -1,7 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Enemy : MonoBehaviour
 {
     public float speed = 5f;
@@ -24,13 +23,10 @@ public bool hasFoundPlayer = false;
     void Start()
     {
         currentHealth = maxHealth;
-        /*   Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-           transform.position = new Vector3(screenBounds.x, Random.Range(-screenBounds.y, screenBounds.y), 0f);*/
 
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(!hasFoundPlayer)
@@ -73,19 +69,6 @@ public bool hasFoundPlayer = false;
         rb.Sleep();
     }
 
-    /*    private void OnTriggerEnter2D(Collider2D collision)
-        {
-            Debug.Log("Collision");
-            if (collision.gameObject.CompareTag("Arrow"))
-            {
-                Arrow arrow = collision.gameObject.GetComponent<Arrow>();
-                 health = health;
-
-                Destroy(collision.gameObject);
-            }
-        }*/
-
-
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -95,7 +78,6 @@ public bool hasFoundPlayer = false;
             Die();
         }
     }
-
     private void Die()
     {
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)

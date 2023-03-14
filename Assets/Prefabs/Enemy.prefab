@@ -8,12 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1125556257949151289}
-  - component: {fileID: 7363487112190761220}
-  - component: {fileID: 3174151641944657181}
-  - component: {fileID: 3174151641944657154}
-  - component: {fileID: -8730752351969231044}
-  - component: {fileID: 9172173494388859588}
+  - component: {fileID: 8074454168399501962}
+  - component: {fileID: 1846654788194087863}
+  - component: {fileID: 5848829771834512567}
+  - component: {fileID: 6001768655770264630}
+  - component: {fileID: 2872312332465644025}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Enemy
@@ -151,39 +150,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-8730752351969231044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5898501043571955536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4005d1157e8df43ab52cb4ec107ebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  target: {fileID: 0}
-  attackDistance: 1
-  maxHealth: 15
-  damage: 10
-  attackDelay: 2
-  coinPrefab: {fileID: 0}
-  coinCount: 1
-  Player: {fileID: 0}
---- !u!114 &9172173494388859588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5898501043571955536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ec5811e7716f3e4b8cda924bfbc16fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 0}
-  fireInterval: 0
-  detectionRange: 10000
