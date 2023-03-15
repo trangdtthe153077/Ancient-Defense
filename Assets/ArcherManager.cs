@@ -36,11 +36,17 @@ public class ArcherManager : MonoBehaviour
     SavingObject changeCharacterCanvas;
     GameStateController gameStateController;
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
+
         changeCharacterCanvas = GameObject.FindGameObjectWithTag("SavingObject").GetComponent<SavingObject>();
         gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
 
+    }
+    void Start()
+    {
+    
         archer = new GameObject[5];
 
         ChangeCharCanvas.gameObject.SetActive(false);

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6001768655770264630}
   - component: {fileID: 2872312332465644025}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: ea66164de1d40144f9948760bdfa647e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7924528, g: 0.17493767, b: 0.5354426, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,10 +99,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4005d1157e8df43ab52cb4ec107ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  target: {fileID: 0}
+  attackDistance: 1
   maxHealth: 10
   damage: 10
   attackDelay: 2
-  player: {fileID: 0}
+  coinPrefab: {fileID: 0}
+  coinCount: 1
+  hasFoundPlayer: 0
+  Player: {fileID: 0}
 --- !u!50 &6001768655770264630
 Rigidbody2D:
   serializedVersion: 4
