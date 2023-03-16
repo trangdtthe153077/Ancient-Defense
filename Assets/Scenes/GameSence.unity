@@ -492,7 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 196554722}
   m_Layer: 0
-  m_Name: Witch (1)
+  m_Name: Witch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 256496879}
   - component: {fileID: 256496878}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: GameObject
   m_TagString: SavingObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1122,7 +1122,7 @@ GameObject:
   - component: {fileID: 323184292}
   - component: {fileID: 323184291}
   m_Layer: 0
-  m_Name: EventSystem (1)
+  m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1471,7 +1471,7 @@ GameObject:
   - component: {fileID: 428152845}
   - component: {fileID: 428152844}
   m_Layer: 5
-  m_Name: ArcherManager (1)
+  m_Name: ArcherManager
   m_TagString: ArcherManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1867,7 +1867,7 @@ GameObject:
   - component: {fileID: 492276792}
   - component: {fileID: 492276791}
   m_Layer: 5
-  m_Name: ChangeCharacter (1)
+  m_Name: ChangeCharacter
   m_TagString: ChangeChar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2508,7 +2508,7 @@ GameObject:
   - component: {fileID: 696051661}
   - component: {fileID: 696051660}
   m_Layer: 5
-  m_Name: CharacterDetail (1)
+  m_Name: CharacterDetail
   m_TagString: Char-Details
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2734,7 +2734,7 @@ GameObject:
   - component: {fileID: 774588392}
   - component: {fileID: 774588391}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3063,7 +3063,7 @@ GameObject:
   - component: {fileID: 893985918}
   - component: {fileID: 893985917}
   m_Layer: 0
-  m_Name: MaxHealth (1)
+  m_Name: MaxHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3921,7 +3921,7 @@ GameObject:
   - component: {fileID: 1008450309}
   - component: {fileID: 1008450308}
   m_Layer: 0
-  m_Name: Tower (1)
+  m_Name: Tower
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4704,7 +4704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175326855}
   m_Layer: 0
-  m_Name: HealthBar (1)
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5063,7 +5063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7607863924578846853, guid: 7d3d5247d5e8b1242a1f5385869bf4a5, type: 3}
       propertyPath: m_Name
-      value: Circle (3)
+      value: Circle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d3d5247d5e8b1242a1f5385869bf4a5, type: 3}
@@ -5214,7 +5214,7 @@ GameObject:
   - component: {fileID: 1342569265}
   - component: {fileID: 1342569266}
   m_Layer: 0
-  m_Name: Main Camera (1)
+  m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5300,7 +5300,7 @@ GameObject:
   - component: {fileID: 1386444490}
   - component: {fileID: 1386444494}
   m_Layer: 5
-  m_Name: PlayingCanvas (1)
+  m_Name: PlayingCanvas
   m_TagString: GameState
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5415,7 +5415,7 @@ GameObject:
   - component: {fileID: 1410051397}
   - component: {fileID: 1410051396}
   m_Layer: 0
-  m_Name: GameStateController (1)
+  m_Name: GameStateController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5814,7 +5814,7 @@ GameObject:
   - component: {fileID: 1492906237}
   - component: {fileID: 1492906236}
   m_Layer: 0
-  m_Name: SpawnManager (1)
+  m_Name: SpawnManager
   m_TagString: SpawnManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6025,7 +6025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1576413205}
   m_Layer: 0
-  m_Name: ManaBar (1)
+  m_Name: ManaBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6473,7 +6473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8478847827150667602, guid: f5f64ec45ff490d4491f9869ab422438, type: 3}
       propertyPath: m_Name
-      value: Circle (4)
+      value: Circle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5f64ec45ff490d4491f9869ab422438, type: 3}
@@ -6944,7 +6944,7 @@ GameObject:
   - component: {fileID: 1778455167}
   - component: {fileID: 1778455166}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Square
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
