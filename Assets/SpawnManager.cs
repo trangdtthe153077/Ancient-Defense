@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject enemyFlyPrefab;
 
+    public int currentEnemyChosen;
+    List<GameObject> enemies = new List<GameObject>();
     public float waveInterval=10;
     public float spawnInterval;
     public int maxEnemiesPerWave = 10;
@@ -18,22 +21,35 @@ public class SpawnManager : MonoBehaviour
     private int enemiesToSpawn = 0;
     private float timer = 0f;
     private int maxWave;
+
+    int maxEnemyWave;
+    int minEnemyWave;
+
     Timer timing;
     bool isSpawning = false;
     bool isBoss = false;
 
     bool inGame = false;
+
+    bool newGame = false;
+    GameStateController gameStateController;
     private void Start()
     {
+        enemies.Add(enemyPrefab);
         timing = GetComponent<Timer>();
-        maxWave= NumberWave();
-        SpawnWave();
+      
         timing.Duration = 1;
         timing.Run();
+        gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
+        StartGame();
     }
 
     private void Update()
     {
+        if(newGame==false)
+        {
+            StartGame();
+        }    
         if(inGame==true)
 
         {
@@ -47,14 +63,23 @@ public class SpawnManager : MonoBehaviour
     {
         if (enemiesToSpawn > 0 && timer >= spawnInterval)
         {
-            SpawnEnemy();
+            SpawnEnemy(currentEnemyChosen);
             timer = 0f;
             enemiesToSpawn--;
         }
 
         timer += Time.deltaTime;
 
-
+    if(isBoss==true)
+        {
+           if( WinTheGame())
+            {
+                Debug.Log("WIn win win win game");
+                gameStateController.ReturnWaiting();
+                inGame = false;
+                newGame = false;
+            }    
+        }    
 
         if (enemiesToSpawn == 0)
         {
@@ -80,6 +105,10 @@ public class SpawnManager : MonoBehaviour
                     timing.Run();
                     Debug.Log("Wait");
                 }
+                else
+                {
+                    isBoss = true;
+                }    
                 isSpawning = false;
             }
 
@@ -90,14 +119,33 @@ public class SpawnManager : MonoBehaviour
     {
         currentLevel = lv;
         inGame = true;
+    }
+    public void StartGame()
+    {
+        if(currentLevel==6 )
+        {
+            enemies.Add(enemyFlyPrefab);
+            Debug.Log("Add new enemy");
+        }    
+        minEnemyWave = currentLevel / 10 + 3;
+        maxEnemyWave = minEnemyWave + 2;
+        Debug.Log("Spawn min: " + minEnemyWave + ", max: " + maxEnemyWave);
+        currentWave = 1;
+        maxWave = NumberWave();
+        SpawnWave();
+        isSpawning=false;
+        isBoss = false;
+        newGame = true;
     }    
 
-    private void SpawnEnemy()
+    private void SpawnEnemy(int i)
     {
-      var enemy=  Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+    
+        Debug.Log("Total enemies: "+enemies.Count);
+      var enemy= Instantiate(enemies[i], transform.position, Quaternion.identity);
         enemy.tag = "Enemy";
-        var enemyfly = Instantiate(enemyFlyPrefab, transform.position, Quaternion.identity);
-        enemyfly.tag = "Enemy fly";
+   /*     var enemyfly = Instantiate(enemyFlyPrefab, transform.position, Quaternion.identity);
+        enemyfly.tag = "Enemy";*/
     }
 
     private void SpawnBoss()
@@ -109,22 +157,38 @@ public class SpawnManager : MonoBehaviour
     {
       
 
-        enemiesToSpawn = Random.Range(3, 6);
+        enemiesToSpawn = Random.Range(minEnemyWave, maxEnemyWave);
         currentWave++;
         Debug.Log(spawnInterval);
         spawnInterval = 7 / enemiesToSpawn;
         Debug.Log(spawnInterval);
-  
-    }
-    private int NumberWave()
-    {
+    currentEnemyChosen = Random.Range(0, enemies.Count); 
 
+
+    }
+private int NumberWave()
+    {
+        var i = currentLevel / 20;
+        if (i > 5)
+            i = 5;    
        if(currentLevel%5==1 || currentLevel % 5 == 2)
         {
-            return 4;
+            return 4 +i;
         }
-        return 5;
+        return 5+i;
 
     }
+    public bool WinTheGame()
+    {
+   var enemies =     GameObject.FindGameObjectsWithTag("Enemy");
+        Debug.Log("Checking enemy all dead");
+        /*  var boss = GameObject.FindGameObjectsWithTag("Boss");*/
+        if (enemies.Length == 0)
+        {
+            Debug.Log("All enemies dead");
+            return true;
+        }
+        return false;
+    }    
  
 }

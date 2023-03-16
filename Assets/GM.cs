@@ -6,9 +6,10 @@ using UnityEngine.UI;
 using static GameStateController;
 
 public class GM : Archer{
-    public float laudaimana = 200;
+    private Tower tower;
+    public int manatower;
     public float delay = 30f;
-    public float mana = 50;
+    public int mana = 50;
     public float price = 500;
     public float level = 1;
     public float skilldmg = (float)(2.5 / 100);
@@ -26,7 +27,9 @@ public class GM : Archer{
         timer.Duration = 1;
         delayTimer = gameObject.AddComponent<Timer>();
         delayTimer.Duration = 5f;
-   
+   tower= GameObject.FindWithTag("Tower").GetComponent<Tower>();
+        manatower= tower.getMana();
+        Debug.Log("mana tower: "+manatower);
         Debug.Log("bonk");
          btn = GetComponent<Button>();
         btn.onClick.AddListener(OnButtonClick);
@@ -61,10 +64,11 @@ public class GM : Archer{
     {
 
         Debug.Log("BUtton called");
-        if ((laudaimana-mana>0)&& success == false && ( delayTimer.Finished || delayFinished==false))
+        if ((manatower-mana>=0)&& success == false && ( delayTimer.Finished || delayFinished==false))
         {
-            laudaimana = laudaimana - mana;
-            Debug.Log("mana: "+laudaimana);
+            manatower = manatower - mana;
+            tower.setMana(manatower);
+            Debug.Log("mana: "+ manatower);
             delayTimer.Run();
             timer.Run();
             success = true;
