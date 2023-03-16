@@ -155,8 +155,7 @@ MonoBehaviour:
   attackDelay: 2
   coinPrefab: {fileID: 0}
   coinCount: 1
-  hasFoundPlayer: 0
-  Player: {fileID: 0}
+  hasFoundTower: 0
 --- !u!114 &7750334899180212137
 MonoBehaviour:
   m_ObjectHideFlags: 0

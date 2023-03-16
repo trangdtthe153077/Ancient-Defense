@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Enemy : MonoBehaviour
 {
+
     public float speed = 5f;
     public Transform target;
     public float attackDistance = 1f;
@@ -17,8 +18,9 @@ public class Enemy : MonoBehaviour
     public GameObject coinPrefab; // đối tượng tiền tệ
     public int coinCount = 1; // số lượng tiền tệ rơi ra
     private bool isDead = false; // kiểm tra quái đã chết hay chưa
-public bool hasFoundTower = false;
-    public GameObject Tower;
+    public bool hasFoundTower = false;
+    public GameObject Towerbd;
+
 
     void Start()
     {
@@ -51,14 +53,29 @@ public bool hasFoundTower = false;
             {
                 if (collider.tag == "Tower")
                 {
-                    collider.GetComponent<Tower>().TakeDamage(damage);
-                    Debug.Log("here found tower!");
-					Fire();
+                    Tower tower = collider.GetComponent<Tower>();
 
-					StopMoving();
-					hasFoundTower = true;
 
-                }
+                    if (tower != null)
+					{
+
+						// Tower component được tìm thấy
+						Debug.Log("Found Tower!");
+						tower.TakeDamage(damage);
+						StopMoving();
+						hasFoundTower = true;
+					}
+					else
+					{
+						// Tower component không tồn tại trên đối tượng
+						Debug.Log("Tower component not found!");
+					}
+					
+					
+						
+					
+
+				}
             }
         }
 
@@ -85,17 +102,7 @@ public bool hasFoundTower = false;
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
         Destroy(gameObject);
     }
-	void Fire()
-	{
-		//Create a new arrow and set its position and rotation
-
-		GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
-
-		//Apply a force to the arrow to make it move forward
-
-		arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * 1500f);
-		arrow.GetComponent<Arrow>().damage = Mathf.RoundToInt(archer.damage);
-	}
+	
 
 	private void OnTriggerEnter2D(Collider2D other)
     {

@@ -108,8 +108,7 @@ MonoBehaviour:
   attackDelay: 2
   coinPrefab: {fileID: 0}
   coinCount: 1
-  hasFoundPlayer: 0
-  Player: {fileID: 0}
+  hasFoundTower: 0
 --- !u!50 &6001768655770264630
 Rigidbody2D:
   serializedVersion: 4
