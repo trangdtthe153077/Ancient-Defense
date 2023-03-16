@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2989151915881648096}
   - component: {fileID: 3597887816310579765}
   - component: {fileID: -2261012783646729256}
+  - component: {fileID: 4288499628601280503}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -106,8 +107,7 @@ MonoBehaviour:
   attackDelay: 2
   coinPrefab: {fileID: 0}
   coinCount: 1
-  hasFoundPlayer: 0
-  Player: {fileID: 0}
+  hasFoundTower: 0
 --- !u!61 &-2261012783646729256
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +134,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &4288499628601280503
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674159778262974922}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
