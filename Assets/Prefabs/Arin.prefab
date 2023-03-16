@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1254787507111231870}
   - component: {fileID: 1254787507111231871}
   - component: {fileID: 1254787507111231864}
+  - component: {fileID: -4367318329194347729}
   m_Layer: 0
   m_Name: Arin
   m_TagString: Arin
@@ -29,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5517597, y: -3.0487587, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,6 +46,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -112,3 +115,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee3be93cb862084f9c6cc37fbb6945c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4367318329194347729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254787507111231865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02a5ac622b64b342b9ccc70f98b0d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manatower: 0
+  delay: 30
+  mana: 50
+  price: 500
+  level: 1
+  skilldmg: 0.025
+  efftime: 5
+  btn: {fileID: 0}
+  Soldier: {fileID: 3005519921814273048, guid: f52a73c15ce4af54ba24fccdccadc91b, type: 3}
+  spacing: 1.3
