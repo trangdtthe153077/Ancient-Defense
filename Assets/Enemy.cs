@@ -17,8 +17,8 @@ public class Enemy : MonoBehaviour
     public GameObject coinPrefab; // đối tượng tiền tệ
     public int coinCount = 1; // số lượng tiền tệ rơi ra
     private bool isDead = false; // kiểm tra quái đã chết hay chưa
-public bool hasFoundPlayer = false;
-    public GameObject Player;
+public bool hasFoundTower = false;
+    public GameObject Tower;
 
     void Start()
     {
@@ -29,7 +29,7 @@ public bool hasFoundPlayer = false;
 
     void Update()
     {
-        if(!hasFoundPlayer)
+        if(!hasFoundTower)
         {
             // quái di chuyển sang trái
             transform.Translate(Vector3.left * 3f * Time.deltaTime);
@@ -49,12 +49,14 @@ public bool hasFoundPlayer = false;
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 6f);
             foreach (Collider2D collider in colliders)
             {
-                if (collider.tag == "Player")
+                if (collider.tag == "Tower")
                 {
-                    collider.GetComponent<Player>().TakeDamage(damage);
-                    Debug.Log("here!");
-                    StopMoving();
-                    hasFoundPlayer = true;
+                    collider.GetComponent<Tower>().TakeDamage(damage);
+                    Debug.Log("here found tower!");
+					Fire();
+
+					StopMoving();
+					hasFoundTower = true;
 
                 }
             }
@@ -83,50 +85,62 @@ public bool hasFoundPlayer = false;
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
         Destroy(gameObject);
     }
+	void Fire()
+	{
+		//Create a new arrow and set its position and rotation
 
-    private void OnTriggerEnter2D(Collider2D other)
+		GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
+
+		//Apply a force to the arrow to make it move forward
+
+		arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * 1500f);
+		arrow.GetComponent<Arrow>().damage = Mathf.RoundToInt(archer.damage);
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
 
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-    /*    else if (other.gameObject.CompareTag("Arrow"))
-        {
-            Debug.Log("Trung dan");
-            Arrow arrow = other.GetComponent<Arrow>();
-            TakeDamage(arrow.damage);
+		/*    else if (other.gameObject.CompareTag("Arrow"))
+            {
+                Debug.Log("Trung dan");
+                Arrow arrow = other.GetComponent<Arrow>();
+                TakeDamage(arrow.damage);
+            }
+            //if (collision.gameObject.CompareTag("Player"))
+            //{
+            //    Tiền sẽ rơi ra tại vị trí hiện tại của quái vật
+            //    Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            //    Destroy quái vật
+            //    Destroy(gameObject);
+            //}
         }
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-        //    Tiền sẽ rơi ra tại vị trí hiện tại của quái vật
-        //    Instantiate(coinPrefab, transform.position, Quaternion.identity);
-        //    Destroy quái vật
-        //    Destroy(gameObject);
-        //}
-    }
-    void MoveTowardsPlayer()
-    {
-        Vector2 direction = target.position - transform.position;
-        rb.velocity = direction.normalized * speed;
-    }
+        void MoveTowardsPlayer()
+        {
+            Vector2 direction = target.position - transform.position;
+            rb.velocity = direction.normalized * speed;
+        }
 
-    void Attack()
-    {
-        // Add code to damage the player here
-    }
-    //void Fire()
-    //{
-    //    // Create a new arrow and set its position and rotation
-    //    GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
+        void Attack()
+        {
+            // Add code to damage the player here
+        }
+        void Fire()
+        {
+             Create a new arrow and set its position and rotation
+            GameObject arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
 
-    //    // Apply a force to the arrow to make it move forward
-    //    arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * 1500f);
-    //    arrow.GetComponent<Arrow>().damage = Mathf.RoundToInt(archer.damage);
-    //}
-    */
-    }
-    
+             Apply a force to the arrow to make it move forward
+            arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * 1500f);
+            arrow.GetComponent<Arrow>().damage = Mathf.RoundToInt(archer.damage);
+        }
+        */
+		
+	}
+
 }
 
     
