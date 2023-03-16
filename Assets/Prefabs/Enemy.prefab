@@ -103,9 +103,11 @@ MonoBehaviour:
   target: {fileID: 0}
   attackDistance: 1
   maxHealth: 10
-  damage: 10
+  basedamage: 10
+  damage: 7
   attackDelay: 2
   coinPrefab: {fileID: 0}
+  baseCoin: 20
   coinCount: 1
   hasFoundPlayer: 0
   Player: {fileID: 0}

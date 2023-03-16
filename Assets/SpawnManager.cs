@@ -143,9 +143,9 @@ public class SpawnManager : MonoBehaviour
     
         Debug.Log("Total enemies: "+enemies.Count);
       var enemy= Instantiate(enemies[i], transform.position, Quaternion.identity);
+        enemy.GetComponent<Enemy>().SetLevel(currentLevel);
         enemy.tag = "Enemy";
-   /*     var enemyfly = Instantiate(enemyFlyPrefab, transform.position, Quaternion.identity);
-        enemyfly.tag = "Enemy";*/
+
     }
 
     private void SpawnBoss()
