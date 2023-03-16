@@ -41,15 +41,16 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        this.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+     
         Enemy enemy = collision.GetComponent<Enemy>();
         if (enemy != null)
         {
+            this.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             Debug.Log("Take damage");
             enemy.TakeDamage(damage);
-           
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+      
     }
 
 
