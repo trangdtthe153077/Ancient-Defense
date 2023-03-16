@@ -4,47 +4,41 @@ using UnityEngine;
 
 public class SoldierGenerator : MonoBehaviour
 {
-    public int objectCount ; 
-    public float spacing ; 
-    public float speed ; 
-    public GameObject walkAnimation;
-    public GameObject attackAnimation;
-    private bool isAttacking = false;
+    public GameObject objectPrefab; // Kéo và thả prefab của đối tượng vào đây trong Inspector
+    public int numberOfObjects; // Số lượng đối tượng muốn spawn
+    public float speed = 5.0f; // Tốc độ di chuyển của đối tượng
+    private GameObject targetEnemy; // Đối tượng enemy gần nhất
 
-    // Start is called before the first frame update
     void Start()
     {
-        // Tạo ra các đối tượng
-        for (int i = 0; i < objectCount; i++)
+        // Tìm đối tượng enemy gần nhất
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float shortestDistance = Mathf.Infinity;
+        foreach (GameObject enemy in enemies)
         {
-            // Tạo ra một instance của prefab
-            GameObject obj = Instantiate(walkAnimation, transform);
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance)
+            {
+                shortestDistance = distanceToEnemy;
+                targetEnemy = enemy;
+            }
+        }
 
-            // Đặt vị trí của đối tượng
-            float xPos = -5f + i * spacing;
-            float yPos = -4f; // Đặt vị trí Y tại đáy màn hình
-            obj.transform.position = new Vector3(xPos, yPos, 0f);
+        // Spawn đối tượng và di chuyển chúng đến enemy gần nhất
+        for (int i = 0; i < numberOfObjects; i++)
+        {
+            GameObject newObject = Instantiate(objectPrefab, transform.position, Quaternion.identity);
+            StartCoroutine(MoveToObject(newObject, targetEnemy));
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator MoveToObject(GameObject obj, GameObject target)
     {
-        // Di chuyển các đối tượng sang phải theo trục X với tốc độ được chỉ định
-        if (!isAttacking)
+        while (Vector3.Distance(obj.transform.position, target.transform.position) > 0.1f)
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            obj.transform.position = Vector3.MoveTowards(obj.transform.position, target.transform.position, speed * Time.deltaTime);
+            yield return null;
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Obstacle")
-        {
-            isAttacking = true;
-            speed = 0f;
-            walkAnimation.SetActive(false);
-            attackAnimation.SetActive(true);
-        }
-    }
 }
