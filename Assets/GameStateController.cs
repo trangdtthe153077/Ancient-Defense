@@ -17,6 +17,7 @@ public class GameStateController : MonoBehaviour
     Timer timer;
     public Canvas winOrLooseCanvas;
     public TextMeshProUGUI stateGameText;
+    /*public Canvas updateManager;*/
 
     bool isWin;
     bool toggleCanvas;
@@ -83,8 +84,9 @@ public class GameStateController : MonoBehaviour
             playBtn.interactable = false;
             currentState = GameState.Playing;
             Debug.Log("Playing");
-        }    
-      
+        }
+        /*updateManager.gameObject.SetActive(false);*/
+
     }
     public void ReturnWaiting()
     {
@@ -100,6 +102,7 @@ public class GameStateController : MonoBehaviour
         gameLevel++;
 
         levelText.text = "Level: " + gameLevel;
+        /*updateManager.gameObject.SetActive(true);*/
     }
 
     public GameState GetGameState()
