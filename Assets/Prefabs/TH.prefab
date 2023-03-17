@@ -129,11 +129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manatower: 0
   delay: 30
-  mana: 50
+  mana: 30
   price: 500
   level: 1
   skilldmg: 0.025
   efftime: 5
   btn: {fileID: 0}
-  ojspeed: 2
   Golem: {fileID: 4478562347829536844, guid: 510b75a391bf16d48a8a1b15754f9dee, type: 3}
