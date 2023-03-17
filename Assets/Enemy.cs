@@ -63,26 +63,32 @@ public class Enemy : MonoBehaviour
 
 						// Tower component được tìm thấy
 						Debug.Log("Found Tower!");
+						//StartCoroutine(RotateObject());
 						tower.TakeDamage(damage);
 						StopMoving();
 						hasFoundTower = true;
+
 					}
 					else
 					{
 						// Tower component không tồn tại trên đối tượng
 						Debug.Log("Tower component not found!");
 					}
-					
-					
-						
-					
-
 				}
             }
         }
 
     }
-    void StopMoving()
+	IEnumerator RotateObject()
+	{
+		while (true)
+		{
+			transform.Rotate(0, 0, 1);
+			yield return null;
+		}
+	}
+
+	void StopMoving()
     {
         // Dừng di chuyển của quái
         rb.velocity = Vector2.zero;
@@ -108,7 +114,15 @@ public class Enemy : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+		if (other.gameObject.CompareTag("Tower"))
+		{
+            hasFoundTower= true;
+            StopMoving();
+			StartCoroutine(RotateObject());
+
+		}
+
+		if (other.gameObject.CompareTag("Ground"))
         {
 
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
