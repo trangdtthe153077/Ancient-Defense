@@ -128,7 +128,14 @@ public class ArcherManager : MonoBehaviour
         {
             archer[pos].GetComponent<GM>().OnButtonClick();
         }
-     
+        else if(archer[pos].tag == "TH")
+        {
+            archer[pos].GetComponent<TH>().OnButtonClick();
+        }
+        else if (archer[pos].tag == "Arin")
+        {
+            archer[pos].GetComponent<ArinSkill>().OnButtonClick();
+        }
     }
 
     public void ChangeArcher(int arcNum, int pos)

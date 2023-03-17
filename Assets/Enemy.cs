@@ -9,13 +9,15 @@ public class Enemy : MonoBehaviour
     public float attackDistance = 1f;
 
     private Rigidbody2D rb;
-    int health = 10;
+    int basehealth = 10;
     public int maxHealth = 10;
     private int currentHealth;
+    public int basedamage = 10;
     public int damage = 10; // Lượng sát thương gây ra khi tấn công
     public float attackDelay = 2f; // Thời gian giữa hai lần tấn công
     private float attackTimer; // Thời gian từ lần tấn công cuối cùng
     public GameObject coinPrefab; // đối tượng tiền tệ
+    public int baseCoin;
     public int coinCount = 1; // số lượng tiền tệ rơi ra
     private bool isDead = false; // kiểm tra quái đã chết hay chưa
     public bool hasFoundTower = false;
@@ -113,6 +115,16 @@ public class Enemy : MonoBehaviour
         }
 
     }
+
+    public void SetLevel(int lv)
+    {
+
+        damage = basedamage + lv;
+        maxHealth = basehealth + lv * 3;
+        coinCount = baseCoin + lv;
+
+        Debug.Log("DMG, Health of enemy: "+damage + ","+ maxHealth);
+    }    
     
 }
 

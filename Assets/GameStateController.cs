@@ -14,11 +14,22 @@ public class GameStateController : MonoBehaviour
     SpawnManager spawnManager;
     public TextMeshProUGUI levelText;
     public Button playBtn;
+    Timer timer;
+    public Canvas winOrLooseCanvas;
+    public TextMeshProUGUI stateGameText;
+    /*public Canvas updateManager;*/
+
+    bool isWin;
+    bool toggleCanvas;
     void Start()
     {
+        timer = gameObject.GetComponent<Timer>();
+        timer.Duration = 2;
+       
         //readgamelvfromfile;
         //set game level;
-
+        winOrLooseCanvas.gameObject.SetActive(false);
+        Debug.Log("Set active=false");
         currentState = GameState.Waiting;
 
         spawnManager = GameObject.FindWithTag("SpawnManager").GetComponent<SpawnManager>();
@@ -33,7 +44,20 @@ public class GameStateController : MonoBehaviour
         switch (currentState)
         {
             case GameState.Waiting:
-            
+            if(isWin==true&&toggleCanvas==false)
+                {
+                    winOrLooseCanvas.gameObject.SetActive(true);
+                    stateGameText.text = "You win the game^^!";
+                    timer.Run();
+                    toggleCanvas=true;
+                } 
+            else if (isWin == true && toggleCanvas == true&& timer.Finished)
+                {
+                    winOrLooseCanvas.gameObject.SetActive(false);
+                    toggleCanvas=false;
+                    isWin = false;
+                }    
+        
                 break;
             case GameState.Playing:
                 spawnManager.SetLevelOfGame(gameLevel);
@@ -60,8 +84,9 @@ public class GameStateController : MonoBehaviour
             playBtn.interactable = false;
             currentState = GameState.Playing;
             Debug.Log("Playing");
-        }    
-      
+        }
+        /*updateManager.gameObject.SetActive(false);*/
+
     }
     public void ReturnWaiting()
     {
@@ -71,8 +96,13 @@ public class GameStateController : MonoBehaviour
         playBtn.interactable = true;
         playBtn.GetComponentInChildren<Text>().text = "Play";
         //can tang quai lv nua
+        isWin = true;
+        
+     
         gameLevel++;
+
         levelText.text = "Level: " + gameLevel;
+        /*updateManager.gameObject.SetActive(true);*/
     }
 
     public GameState GetGameState()
@@ -85,4 +115,6 @@ public class GameStateController : MonoBehaviour
 
         currentState = gameState;
     }
+
+
 }
