@@ -13,8 +13,11 @@ public class Tower : MonoBehaviour
     public int currentMana;
     public TextMeshProUGUI healthtext;
     public TextMeshProUGUI manatext;
+
+    GameStateController gameStateController;
     void Start()
     {
+        gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
         currentHealth = maxHealth;
         currentMana = maxMana;
     }
@@ -24,6 +27,35 @@ public class Tower : MonoBehaviour
     {
         healthtext.text = currentHealth.ToString();
         manatext.text = currentMana.ToString();
+
+    }
+	public void TakeDamage(int damage)
+	{
+		currentHealth -= damage;
+		if (currentHealth <= 0)
+		{
+			//Die();
+			Debug.Log("here found tower!");
+        
+            var a = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach(var b in a)
+            {
+                Destroy(b);
+            }    
+            currentHealth = 0;
+            currentMana = 0;
+        }
+	}
+
+    public void ResetTower()
+    {
+        currentHealth = maxHealth;
+        currentMana = maxMana;
+    }    
+	private void Die()
+    {
+       //  Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
+        Destroy(gameObject);
     }
     public int getHealth()
     {

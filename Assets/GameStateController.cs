@@ -20,6 +20,8 @@ public class GameStateController : MonoBehaviour
     public Canvas updateManager;
 
     bool isWin;
+    bool isLoose;
+    bool finnishedGame;
     bool toggleCanvas;
     void Start()
     {
@@ -44,18 +46,32 @@ public class GameStateController : MonoBehaviour
         switch (currentState)
         {
             case GameState.Waiting:
-            if(isWin==true&&toggleCanvas==false)
+            if(finnishedGame==true&&toggleCanvas==false &&(isWin == true||isLoose==true))
                 {
+                   
+                    if(isWin==true)
+                    {    
+                        stateGameText.text = "You win the game ^^!";
+                    }
+                    else if(isLoose==true)
+                    {
+                        stateGameText.text = "You loose this game T_T!";
+                    }    
                     winOrLooseCanvas.gameObject.SetActive(true);
-                    stateGameText.text = "You win the game^^!";
+                    
                     timer.Run();
                     toggleCanvas=true;
-                } 
-            else if (isWin == true && toggleCanvas == true&& timer.Finished)
+                    isWin = false;
+                    isLoose = false;
+                }
+            
+
+            else if ( toggleCanvas == true&& timer.Finished)
                 {
                     winOrLooseCanvas.gameObject.SetActive(false);
                     toggleCanvas=false;
-                    isWin = false;
+                  
+                    finnishedGame = false;
                 }    
         
                 break;
@@ -97,12 +113,27 @@ public class GameStateController : MonoBehaviour
         playBtn.GetComponentInChildren<Text>().text = "Play";
         //can tang quai lv nua
         isWin = true;
-        
-     
+
+        finnishedGame = true;
         gameLevel++;
 
         levelText.text = "Level: " + gameLevel;
         updateManager.gameObject.SetActive(true);
+    }
+    public void ReturnLoose()
+    {
+        // Change state to Playing when user clicks play button
+        Debug.Log("Return Loose");
+        currentState = GameState.Waiting;
+        playBtn.interactable = true;
+        playBtn.GetComponentInChildren<Text>().text = "Play";
+    
+        isWin = false;
+        isLoose = true;
+        finnishedGame = true;
+
+
+        levelText.text = "Level: " + gameLevel;
     }
 
     public GameState GetGameState()

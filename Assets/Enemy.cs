@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 public class Enemy : MonoBehaviour
 {
+
     public float speed = 5f;
     public Transform target;
     public float attackDistance = 1f;
@@ -20,8 +20,9 @@ public class Enemy : MonoBehaviour
     public int baseCoin;
     public int coinCount = 1; // số lượng tiền tệ rơi ra
     private bool isDead = false; // kiểm tra quái đã chết hay chưa
-public bool hasFoundPlayer = false;
-    public GameObject Player;
+    public bool hasFoundTower = false;
+    public GameObject Towerbd;
+
 
     void Start()
     {
@@ -32,7 +33,7 @@ public bool hasFoundPlayer = false;
 
     void Update()
     {
-        if(!hasFoundPlayer)
+        if(!hasFoundTower)
         {
             // quái di chuyển sang trái
             transform.Translate(Vector3.left * 3f * Time.deltaTime);
@@ -49,17 +50,34 @@ public bool hasFoundPlayer = false;
             attackTimer = 0f;
 
             // Tấn công nếu người chơi ở trong vùng va chạm
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 6f);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
             foreach (Collider2D collider in colliders)
             {
-                if (collider.tag == "Player")
+                if (collider.tag == "Tower")
                 {
-                    collider.GetComponent<Player>().TakeDamage(damage);
-                    Debug.Log("here!");
-                    StopMoving();
-                    hasFoundPlayer = true;
+                    Tower tower = collider.GetComponent<Tower>();
 
-                }
+
+                    if (tower != null)
+					{
+
+						// Tower component được tìm thấy
+						Debug.Log("Found Tower!");
+						tower.TakeDamage(damage);
+						StopMoving();
+						hasFoundTower = true;
+					}
+					else
+					{
+						// Tower component không tồn tại trên đối tượng
+						Debug.Log("Tower component not found!");
+					}
+					
+					
+						
+					
+
+				}
             }
         }
 
@@ -86,8 +104,9 @@ public bool hasFoundPlayer = false;
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
         Destroy(gameObject);
     }
+	
 
-    private void OnTriggerEnter2D(Collider2D other)
+	private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
