@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
             attackTimer = 0f;
 
             // Tấn công nếu người chơi ở trong vùng va chạm
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 6f);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
             foreach (Collider2D collider in colliders)
             {
                 if (collider.tag == "Tower")

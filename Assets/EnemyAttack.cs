@@ -14,9 +14,9 @@ public class EnemyAttack : MonoBehaviour
 
     private void Start()
     {
-        float distance = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height / 2f)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height / 2f)));
+        float distance = Vector2.Distance(Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height / 10f)), Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height / 2f)));
         detectionRange = distance;
-
+        detectionRange = 3f;
         enemy = GetComponent<Enemy>();
         fireInterval = enemy.speed;
 
