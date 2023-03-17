@@ -33,6 +33,8 @@ public class SpawnManager : MonoBehaviour
 
     bool newGame = false;
     GameStateController gameStateController;
+
+    Tower tower;
     private void Start()
     {
         enemies.Add(enemyPrefab);
@@ -42,10 +44,13 @@ public class SpawnManager : MonoBehaviour
         timing.Run();
         gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
         StartGame();
+
+         tower = GameObject.FindWithTag("Tower").GetComponent<Tower>();
     }
 
     private void Update()
     {
+      
         if(newGame==false)
         {
             StartGame();
@@ -55,12 +60,24 @@ public class SpawnManager : MonoBehaviour
         {
             SpawnInGame();
         }
-      
-      
+    
+
     }
 
     public void SpawnInGame()
     {
+
+        if(tower.getHealth()<=0)
+        {
+            Debug.Log("Loooossssssssseeeeeeeee game");
+            gameStateController.ReturnLoose();
+            inGame = false;
+            newGame = false;
+            tower.ResetTower();
+            return;
+        }    
+
+
         if (enemiesToSpawn > 0 && timer >= spawnInterval)
         {
             SpawnEnemy(currentEnemyChosen);
@@ -78,6 +95,7 @@ public class SpawnManager : MonoBehaviour
                 gameStateController.ReturnWaiting();
                 inGame = false;
                 newGame = false;
+                tower.ResetTower();
             }    
         }    
 
@@ -119,6 +137,7 @@ public class SpawnManager : MonoBehaviour
     {
         currentLevel = lv;
         inGame = true;
+    
     }
     public void StartGame()
     {
@@ -190,5 +209,7 @@ private int NumberWave()
         }
         return false;
     }    
+
+   
  
 }
