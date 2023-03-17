@@ -65,10 +65,9 @@ public class Enemy : MonoBehaviour
 						Debug.Log("Found Tower!");
 						//StartCoroutine(RotateObject());
 						tower.TakeDamage(damage);
-						StopMoving();
-						hasFoundTower = true;
-
-					}
+                        /*       StartCoroutine(RotateObject());*/
+                        StartCoroutine(RotateObject());
+                    }
 					else
 					{
 						// Tower component không tồn tại trên đối tượng
@@ -81,12 +80,20 @@ public class Enemy : MonoBehaviour
     }
 	IEnumerator RotateObject()
 	{
-		while (true)
-		{
-			transform.Rotate(0, 0, 1);
-			yield return null;
-		}
-	}
+        int numRotations = 0;
+        float totalRotation = 0f;
+        while (numRotations < 1)
+        {
+            transform.Rotate(0, 0, 10);
+            totalRotation += 10f;
+            yield return null;
+            if (totalRotation >= 360f)
+            {
+                numRotations++;
+                Debug.Log("Finish turn " + numRotations);
+            }
+        }
+    }
 
 	void StopMoving()
     {
@@ -118,9 +125,10 @@ public class Enemy : MonoBehaviour
 		{
             hasFoundTower= true;
             StopMoving();
-			StartCoroutine(RotateObject());
+            Debug.Log("towwwwwwwwwwww");
+          /*  StartCoroutine(RotateObject());*/
 
-		}
+        }
 
 		if (other.gameObject.CompareTag("Ground"))
         {
