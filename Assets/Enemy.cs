@@ -121,12 +121,12 @@ public class Enemy : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-		if (other.gameObject.CompareTag("Tower"))
+		if (other.gameObject.CompareTag("Tower") || other.gameObject.CompareTag("Ally"))
 		{
             hasFoundTower= true;
             StopMoving();
             Debug.Log("towwwwwwwwwwww");
-          /*  StartCoroutine(RotateObject());*/
+            StartCoroutine(RotateObject());
 
         }
 
