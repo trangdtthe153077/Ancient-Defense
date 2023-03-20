@@ -19,8 +19,8 @@ public class GM : Archer{
     Timer timer;
     Timer delayTimer;
     bool delayFinished=false;
-    bool success=false;
-    
+    bool success = false;
+    public float upgradeprice;
     void Start()
     {
       timer=  gameObject.AddComponent<Timer>();
@@ -57,7 +57,8 @@ public class GM : Archer{
         mana += 2;
         skilldmg += (float)  2.5 / 100;
         efftime += (float)0.2;
-
+        Basedmg += 2;
+        upgradeprice = (500 * (level - 1) / 5) + 500; ;
     }
 
     public void OnButtonClick()

@@ -138,6 +138,36 @@ public class ArcherManager : MonoBehaviour
         }
     }
 
+    public void UpgradeArcher(int arcNum)
+    {
+        switch (arcNum)
+        {
+
+            case 1:
+
+                archer[arcNum].GetComponent<Arin>().LevelUp();
+                break;
+            case 2:
+                archer[arcNum].GetComponent<Arin>().LevelUp();
+                break;
+            case 3:
+                tempArc = archer3;
+                tagName = "GM";
+                break;
+            case 4:
+                tempArc = archer4;
+                tagName = "TX";
+                break;
+            case 5:
+                tempArc = archer5;
+                tagName = "TH";
+                break;
+
+
+
+
+        }
+    }    
     public void ChangeArcher(int arcNum, int pos)
     {
         switch (arcNum)
