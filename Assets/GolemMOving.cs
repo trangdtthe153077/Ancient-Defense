@@ -66,7 +66,8 @@ public class GolemMOving : MonoBehaviour
 		if (!hasFoundEnemy)
 		{
 			// triệu hồi đồng minh đi từ trái sang
-			transform.position += Vector3.right * speed * Time.deltaTime;
+			Vector3 movement = new Vector3(1, 0, 0) * speed * Time.deltaTime;
+			transform.position += movement;
 
 
 		}
@@ -117,9 +118,8 @@ public class GolemMOving : MonoBehaviour
 		if (other.gameObject.CompareTag("Enemy"))
 		{
 			hasFoundEnemy = true;
-			StopMoving();
-
 			enemiesPresent = true;
+			StopMoving();
 
 		}
 		else
