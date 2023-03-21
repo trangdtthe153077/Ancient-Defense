@@ -3721,7 +3721,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787184621}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dde112ccb48c2be4ab8657c2eae7e31d, type: 3}
   m_Name: 
@@ -4841,6 +4841,7 @@ GameObject:
   - component: {fileID: 1008450310}
   - component: {fileID: 1008450309}
   - component: {fileID: 1008450308}
+  - component: {fileID: 1008450312}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Tower
@@ -4864,7 +4865,6 @@ MonoBehaviour:
   currentHealth: 0
   maxMana: 50
   currentMana: 0
-  manaRegenRate: 5
   lv: 1
   goldUpdate: 0
   healthtext: {fileID: 223341056}
@@ -4872,6 +4872,7 @@ MonoBehaviour:
   towerlv: {fileID: 1211981374}
   goldtext: {fileID: 123551415}
   goldmanager: {fileID: 0}
+  timer: {fileID: 0}
 --- !u!61 &1008450309
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4968,6 +4969,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1008450312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008450307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74a1c9e2e4ad8a4bb8b82e5334234ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1039493080
 GameObject:
   m_ObjectHideFlags: 0
@@ -8420,7 +8433,6 @@ GameObject:
   - component: {fileID: 1730501219}
   - component: {fileID: 1730501222}
   - component: {fileID: 1730501221}
-  - component: {fileID: 1730501220}
   m_Layer: 5
   m_Name: GoldNumber
   m_TagString: Untagged
@@ -8448,20 +8460,6 @@ RectTransform:
   m_AnchoredPosition: {x: -304.5, y: 170.39}
   m_SizeDelta: {x: 90.52, y: 31.525}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1730501220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730501218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde112ccb48c2be4ab8657c2eae7e31d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currnetGold: 0
-  goldtxext: {fileID: 1730501221}
 --- !u!114 &1730501221
 MonoBehaviour:
   m_ObjectHideFlags: 0
