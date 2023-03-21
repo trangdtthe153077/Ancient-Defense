@@ -22,9 +22,11 @@ public class Enemy : MonoBehaviour
     private bool isDead = false; // kiểm tra quái đã chết hay chưa
     public bool hasFoundTower = false;
     public GameObject Towerbd;
+	public bool allysPresent = false;
 
 
-    void Start()
+
+	void Start()
     {
         currentHealth = maxHealth;
 
@@ -53,12 +55,14 @@ public class Enemy : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
             foreach (Collider2D collider in colliders)
             {
-                if (collider.tag == "Tower")
+                if (collider.tag == "Tower" || collider.tag == "Ally")
                 {
                     Tower tower = collider.GetComponent<Tower>();
+					SoldierMoving ally = collider.GetComponent<SoldierMoving>();
+					GolemMOving ally2 = collider.GetComponent<GolemMOving>();
 
 
-                    if (tower != null)
+					if (tower != null )
 					{
 
 						// Tower component được tìm thấy
@@ -72,6 +76,27 @@ public class Enemy : MonoBehaviour
 					{
 						// Tower component không tồn tại trên đối tượng
 						Debug.Log("Tower component not found!");
+					}
+					if (ally != null)
+					{
+
+						// Tower component được tìm thấy
+						Debug.Log("Found Tower!");
+						//StartCoroutine(RotateObject());
+						ally.TakeDamage(damage);
+						/*       StartCoroutine(RotateObject());*/
+						StartCoroutine(RotateObject());
+					}
+					else
+					{
+						// Tower component không tồn tại trên đối tượng
+						Debug.Log("Ally component not found!");
+					}
+                    if(ally2 != null)
+                    {
+                        ally2.TakeDamage(damage);
+						StartCoroutine(RotateObject());
+
 					}
 				}
             }
@@ -96,14 +121,23 @@ public class Enemy : MonoBehaviour
     }
 
 	void StopMoving()
-    {
-        // Dừng di chuyển của quái
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-        rb.Sleep();
-    }
+	{
+		if (GameObject.FindGameObjectWithTag("Tower") || GameObject.FindGameObjectWithTag("Ally"))
+		{
+			Debug.Log("Found tower or ally, stopping movement.");
+			rb.velocity = Vector2.zero;
+			rb.angularVelocity = 0f;
+			rb.Sleep();
+		}
+		else
+		{
+			Debug.Log("No tower or ally found, continuing movement.");
+			rb.WakeUp();
+			rb.velocity = new Vector2(-1, 0);
+		}
+	}
 
-    public void TakeDamage(int damage)
+	public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log(currentHealth);
@@ -121,14 +155,12 @@ public class Enemy : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-		if (other.gameObject.CompareTag("Tower"))
+		if (other.gameObject.CompareTag("Tower") || other.gameObject.CompareTag("Ally"))
 		{
             hasFoundTower= true;
-            StopMoving();
-            Debug.Log("towwwwwwwwwwww");
-          /*  StartCoroutine(RotateObject());*/
-
-        }
+			StopMoving();
+			StartCoroutine(RotateObject());
+		}
 
 		if (other.gameObject.CompareTag("Ground"))
         {
