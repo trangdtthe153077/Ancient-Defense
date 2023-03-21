@@ -7,19 +7,44 @@ public class SoldierMoving : MonoBehaviour
 	private Rigidbody2D rb;
 
 	public int damage = 1;
+	public int maxHealth = 10;
+	private int currentHealth;
+	public float attackSpeed = 1.0f;
 	// Start is called before the first frame update
 	public float speed;
-    void Start()
+	public bool hasFoundEnemy = false;
+	public bool enemiesPresent = false;
+
+
+	void Start()
     {
-        
-    }
+		currentHealth = maxHealth;
+		rb = GetComponent<Rigidbody2D>();
+
+	}
 	void StopMoving()
 	{
-		// Dừng di chuyển của quái
-		rb.velocity = Vector2.zero;
-		rb.angularVelocity = 0f;
-		rb.Sleep();
-	}	
+		if (enemiesPresent)
+		{
+			// Dừng di chuyển của quái
+			rb.velocity = Vector2.zero;
+			rb.angularVelocity = 0f;
+			rb.Sleep();
+
+		}
+		else
+		{
+			Debug.Log("tiep tuc di chuyen");
+			rb.WakeUp(); // Kích hoạt tính toán vật lý cho Rigidbody
+			rb.velocity = new Vector2(2,0); // Thiết lập vận tốc mới cho đối tượng, ví dụ vận tốc trên trục x là 1
+			rb.angularVelocity = 5f; // Thiết lập góc quay mới cho đối tượng, ví dụ góc quay là 5 độ/giây
+
+		}
+
+
+
+
+	}
 	IEnumerator RotateObject()
 	{
 		int numRotations = 0;
@@ -32,13 +57,20 @@ public class SoldierMoving : MonoBehaviour
 			if (totalRotation >= 360f)
 			{
 				numRotations++;
-				Debug.Log("Finish turn " + numRotations);
 			}
 		}
 	}
 	// Update is called once per frame
 	void Update()
     {
+
+		if (!hasFoundEnemy)
+		{
+			// triệu hồi đồng minh đi từ trái sang
+			transform.position += Vector3.right * speed * Time.deltaTime;
+
+
+		}
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
 		foreach (Collider2D collider in colliders)
 		{
@@ -51,17 +83,58 @@ public class SoldierMoving : MonoBehaviour
 				{
 					enemy.TakeDamage(damage);
 					StartCoroutine(RotateObject());
-					StopMoving();
 
 				}
 				else
 				{
+					
 					//Tower component không tồn tại trên đối tượng
-					Debug.Log("Tower component not found!");
 				}
 			}
 		}
-		transform.position += Vector3.right * speed * Time.deltaTime;
     }
-	
+	public void TakeDamage(int damage)
+	{
+		currentHealth -= damage;
+		if (currentHealth <= 0)
+		{
+			Die();
+		}
+	}
+	private void Die()
+	{
+		// Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
+		Destroy(gameObject);
+	}
+	void OnDestroy()
+	{
+		if (GameObject.FindGameObjectWithTag("Enemy") == null)
+		{
+			enemiesPresent = false;
+			rb.WakeUp();
+		}
+	}
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.CompareTag("Enemy") )
+		{
+			Debug.Log(" found Enemy");
+			hasFoundEnemy = true;
+			enemiesPresent = true;
+			StopMoving();
+		}
+		else
+		{
+
+			enemiesPresent = false;
+			StopMoving();
+
+
+
+
+		}
+
+
+
+	}
 }

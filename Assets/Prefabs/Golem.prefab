@@ -147,4 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  maxHealth: 150
+  attackSpeed: 1
   speed: 2
+  hasFoundEnemy: 0
