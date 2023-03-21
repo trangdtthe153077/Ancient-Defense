@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
                 {
                     Tower tower = collider.GetComponent<Tower>();
 					SoldierMoving ally = collider.GetComponent<SoldierMoving>();
-
+					GolemMOving ally2 = collider.GetComponent<GolemMOving>();
 
 
 					if (tower != null )
@@ -92,6 +92,12 @@ public class Enemy : MonoBehaviour
 						// Tower component không tồn tại trên đối tượng
 						Debug.Log("Ally component not found!");
 					}
+                    if(ally2 != null)
+                    {
+                        ally2.TakeDamage(damage);
+						StartCoroutine(RotateObject());
+
+					}
 				}
             }
         }
@@ -116,26 +122,19 @@ public class Enemy : MonoBehaviour
 
 	void StopMoving()
 	{
-		if (allysPresent)
+		if (GameObject.FindGameObjectWithTag("Tower") || GameObject.FindGameObjectWithTag("Ally"))
 		{
-			// Dừng di chuyển của quái
+			Debug.Log("Found tower or ally, stopping movement.");
 			rb.velocity = Vector2.zero;
 			rb.angularVelocity = 0f;
 			rb.Sleep();
-
 		}
 		else
 		{
-			Debug.Log("tiep tuc di chuyen");
-			rb.WakeUp(); // Kích hoạt tính toán vật lý cho Rigidbody
-			rb.velocity = new Vector2(-2, 0); // Thiết lập vận tốc mới cho đối tượng, ví dụ vận tốc trên trục x là 1
-            //rb.angularVelocity = 5f; // Thiết lập góc quay mới cho đối tượng, ví dụ góc quay là 5 độ/giây
-
-        }
-
-
-
-
+			Debug.Log("No tower or ally found, continuing movement.");
+			rb.WakeUp();
+			rb.velocity = new Vector2(-1, 0);
+		}
 	}
 
 	public void TakeDamage(int damage)
@@ -159,18 +158,8 @@ public class Enemy : MonoBehaviour
 		if (other.gameObject.CompareTag("Tower") || other.gameObject.CompareTag("Ally"))
 		{
             hasFoundTower= true;
-			allysPresent = true;
-
 			StopMoving();
-            StartCoroutine(RotateObject());
-
-
-        }
-        else
-        {
-			allysPresent = false;
-			StopMoving();
-
+			StartCoroutine(RotateObject());
 		}
 
 		if (other.gameObject.CompareTag("Ground"))

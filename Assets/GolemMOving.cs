@@ -36,7 +36,7 @@ public class GolemMOving : MonoBehaviour
 		{
 			Debug.Log("tiep tuc di chuyen");
 			rb.WakeUp(); // Kích hoạt tính toán vật lý cho Rigidbody
-			rb.velocity = new Vector2(2, 0); // Thiết lập vận tốc mới cho đối tượng, ví dụ vận tốc trên trục x là 1
+			rb.velocity = new Vector2(1, 0); // Thiết lập vận tốc mới cho đối tượng, ví dụ vận tốc trên trục x là 1
 			rb.angularVelocity = 5f; // Thiết lập góc quay mới cho đối tượng, ví dụ góc quay là 5 độ/giây
 
 		}
