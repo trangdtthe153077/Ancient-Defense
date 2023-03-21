@@ -83,15 +83,29 @@ public class WitchSkill : MonoBehaviour
 
     public void Witch()
     {
-        for (int i = 0; i < 5; i++)
+        /*GameObject towerObject = GameObject.FindGameObjectWithTag("tower");
+
+        if (towerObject != null)
         {
-            // Tạo ra một instance của prefab
-            GameObject obj = Instantiate(WitchSkillGen, transform);
-            // Đặt vị trí của đối tượng
-            float xPos = -2.44f + i * spacing;
-            float yPos = -5.18f;
-            obj.transform.position = new Vector3(xPos, yPos, 100);
-        }
+            // Tìm tọa độ x của object có tag "enemy" gần nhất so với object có tag "tower"
+            float nearestX = Mathf.Infinity;
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(towerObject.transform.position, 20f, enemyLayerMask);
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.tag == "enemy")
+                {
+                    float distance = Mathf.Abs(towerObject.transform.position.x - collider.transform.position.x);
+                    if (distance < Mathf.Abs(towerObject.transform.position.x - nearestX))
+                    {
+                        nearestX = collider.transform.position.x;
+                    }
+                }
+            }
+
+            // Tạo một object mới tại tọa độ x gần nhất và y = 0
+            Vector3 spawnPosition = new Vector3(nearestX, 0, 0);
+            Instantiate(WitchSkillGen, spawnPosition, Quaternion.identity);
+        }*/
     }
 
     public void StopIncreasing()
