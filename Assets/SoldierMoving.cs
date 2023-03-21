@@ -26,17 +26,16 @@ public class SoldierMoving : MonoBehaviour
 	{
 		if (enemiesPresent)
 		{
-			// Dừng di chuyển của quái
-			rb.velocity = Vector2.zero;
-			rb.angularVelocity = 0f;
-			rb.Sleep();
+		rb.velocity = Vector2.zero;
+		rb.angularVelocity = 0f;
+		rb.Sleep();
 
 		}
 		else
 		{
 			Debug.Log("tiep tuc di chuyen");
 			rb.WakeUp(); // Kích hoạt tính toán vật lý cho Rigidbody
-			rb.velocity = new Vector2(1,0); // Thiết lập vận tốc mới cho đối tượng, ví dụ vận tốc trên trục x là 1
+			rb.velocity = new Vector2(2, 0); // Thiết lập vận tốc mới cho đối tượng, ví dụ vận tốc trên trục x là 1
 			rb.angularVelocity = 5f; // Thiết lập góc quay mới cho đối tượng, ví dụ góc quay là 5 độ/giây
 
 		}
@@ -68,7 +67,8 @@ public class SoldierMoving : MonoBehaviour
 		if (!hasFoundEnemy)
 		{
 			// triệu hồi đồng minh đi từ trái sang
-			transform.position += Vector3.right * speed * Time.deltaTime;
+			Vector3 movement = new Vector3(1, 0, 0) * speed * Time.deltaTime;
+			transform.position += movement;
 
 
 		}
@@ -96,6 +96,7 @@ public class SoldierMoving : MonoBehaviour
     }
 	public void TakeDamage(int damage)
 	{
+		Debug.Log("Damage của lính :" + damage);
 		currentHealth -= damage;
 		if (currentHealth <= 0)
 		{
@@ -107,20 +108,20 @@ public class SoldierMoving : MonoBehaviour
 		// Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
 		Destroy(gameObject);
 	}
-	void OnDestroy()
-	{
-		if (GameObject.FindGameObjectWithTag("Enemy") == null)
-		{
-			enemiesPresent = false;
-			rb.WakeUp();
-		}
-	}
+	
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.CompareTag("Enemy") )
+		
+		if (other.gameObject.CompareTag("Enemy"))
 		{
+			hasFoundEnemy= true;
+			enemiesPresent = true;
 			StopMoving();
-			StartCoroutine(RotateObject());
+		}
+		else
+		{
+			enemiesPresent = false;
+			StopMoving();
 		}
 
 
