@@ -22,6 +22,7 @@ TagManager:
   - Tower
   - Enemy fly
   - Ally
+  - Gold
   layers:
   - Default
   - TransparentFX

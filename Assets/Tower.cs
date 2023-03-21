@@ -11,25 +11,61 @@ public class Tower : MonoBehaviour
     public int currentHealth;
     public int maxMana= 50;
     public int currentMana;
+    public float manaRegenRate = 5; // Số mana được hồi mỗi giây.
+    public int lv=1;
+    public int goldUpdate=200;
     public TextMeshProUGUI healthtext;
     public TextMeshProUGUI manatext;
+    public TextMeshProUGUI towerlv;
+    public TextMeshProUGUI goldtext;
+    public GoldManager goldmanager;
 
     GameStateController gameStateController;
     void Start()
     {
+        goldUpdate = 200;
         gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
         currentHealth = maxHealth;
         currentMana = maxMana;
+        StartCoroutine(RegenerateMana());
+        healthtext.text = currentHealth.ToString();
+        manatext.text = currentMana.ToString();
+        towerlv.text = "Lv" + lv.ToString();
+        goldtext.text = goldUpdate.ToString();
+        goldmanager = GameObject.FindWithTag("Gold").GetComponent<GoldManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthtext.text = currentHealth.ToString();
-        manatext.text = currentMana.ToString();
-
+        
     }
-	public void TakeDamage(int damage)
+    public void LevelUp()
+    {
+        goldmanager.addGold(-goldUpdate);
+        lv++;
+        goldUpdate= 100 *(lv / 5) + 100 *(lv + 1);
+        maxMana = 10 * (lv + 1);
+        maxHealth = 50 * (lv + 1);
+        towerlv.text ="Lv"+ lv.ToString();
+        goldtext.text = " "+ goldUpdate.ToString();
+        healthtext.text = " "+maxHealth.ToString();
+        manatext.text = " " + maxMana.ToString();
+        
+    }
+    public IEnumerator RegenerateMana()
+    {
+        while (true)
+        {
+            if (currentMana < maxMana)
+            {
+                currentMana = Mathf.Min(maxMana, currentMana + Mathf.RoundToInt(manaRegenRate * Time.deltaTime));
+            }
+
+            yield return new WaitForSeconds(1f); // Chờ 1 giây trước khi hồi thêm mana.
+        }
+    }
+    public void TakeDamage(int damage)
 	{
 		currentHealth -= damage;
 		if (currentHealth <= 0)
