@@ -11,7 +11,6 @@ public class Tower : MonoBehaviour
     public int currentHealth;
     public int maxMana= 50;
     public int currentMana;
-    public float manaRegenRate = 5; // Số mana được hồi mỗi giây.
     public int lv=1;
     public int goldUpdate=200;
     public TextMeshProUGUI healthtext;
@@ -19,6 +18,7 @@ public class Tower : MonoBehaviour
     public TextMeshProUGUI towerlv;
     public TextMeshProUGUI goldtext;
     public GoldManager goldmanager;
+    public Timer timer;
 
     GameStateController gameStateController;
     void Start()
@@ -27,17 +27,28 @@ public class Tower : MonoBehaviour
         gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
         currentHealth = maxHealth;
         currentMana = maxMana;
-        StartCoroutine(RegenerateMana());
         healthtext.text = currentHealth.ToString();
         manatext.text = currentMana.ToString();
         towerlv.text = "Lv" + lv.ToString();
         goldtext.text = goldUpdate.ToString();
         goldmanager = GameObject.FindWithTag("Gold").GetComponent<GoldManager>();
+        timer = gameObject.GetComponent<Timer>();
+        timer.Duration = 1;
+        timer.Run();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (timer.Finished)
+        {
+            if (currentMana < maxMana)
+            {
+                currentMana++;
+                manatext.text = currentMana.ToString();
+            }
+            timer.Run();
+        } 
         
     }
     public void LevelUp()
@@ -52,18 +63,6 @@ public class Tower : MonoBehaviour
         healthtext.text = " "+maxHealth.ToString();
         manatext.text = " " + maxMana.ToString();
         
-    }
-    public IEnumerator RegenerateMana()
-    {
-        while (true)
-        {
-            if (currentMana < maxMana)
-            {
-                currentMana = Mathf.Min(maxMana, currentMana + Mathf.RoundToInt(manaRegenRate * Time.deltaTime));
-            }
-
-            yield return new WaitForSeconds(1f); // Chờ 1 giây trước khi hồi thêm mana.
-        }
     }
     public void TakeDamage(int damage)
 	{
