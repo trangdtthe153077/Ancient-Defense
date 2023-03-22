@@ -10,7 +10,7 @@ public class GameStateController : MonoBehaviour
 
     public enum GameState { Waiting, Playing }
     public GameState currentState;
-    public int gameLevel = 5;
+    public int gameLevel = 1;
     SpawnManager spawnManager;
     public TextMeshProUGUI levelText;
     public Button playBtn;
@@ -150,6 +150,6 @@ public class GameStateController : MonoBehaviour
 
         currentState = gameState;
     }
-
+    /**/
 
 }

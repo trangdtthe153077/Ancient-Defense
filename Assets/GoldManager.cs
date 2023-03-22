@@ -10,7 +10,7 @@ public class GoldManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currnetGold = 10000;
+        currnetGold = 0;
     }
 
     // Update is called once per frame

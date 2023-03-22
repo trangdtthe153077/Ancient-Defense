@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Arin : Archer
 {
-    public float damage = 10;
     private Tower tower;
     public int manatower;
     public float delay = 30f;
@@ -36,7 +35,7 @@ public class Arin : Archer
         archer = gameObject.GetComponent<Archer>();
      
         goldManager = GameObject.FindGameObjectWithTag("Gold").GetComponent<GoldManager>();
-        Basedmg = 10;
+        Basedmg = 5;
         Damage = Basedmg;
         Speed = 1f;
         delay = 25;
@@ -89,7 +88,7 @@ public class Arin : Archer
         {
             // T?o ra m?t instance c?a prefab
             GameObject obj = Instantiate(Soldier, transform);
-            obj.GetComponent<SoldierMoving>().setUp((int)damage);
+            obj.GetComponent<SoldierMoving>().setUp((int)Basedmg);
             // ??t v? trí c?a ??i t??ng
             float xPos = -2.44f + i * 2;
             float yPos = -5.18f;

@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
     public int bossWaveInterval = 5;
     public GameObject bossPrefab;
 
-    private int currentLevel = 5;
+    private int currentLevel = 1;
     private int currentWave = 1;
     private int enemiesToSpawn = 0;
     private float timer = 0f;

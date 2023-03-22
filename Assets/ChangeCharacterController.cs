@@ -59,7 +59,7 @@ public class ChangeCharacterController : MonoBehaviour
             canvas.gameObject.SetActive(false);
 
             title.SetText("Arin");
-            content.SetText("Arin is the leader of the army against monsters and the main character in the story. He is a talented and careful warrior, full of faith and ready to fight to protect humanity.");
+            content.SetText("Summon warriors to help defend the tower");
 
 
             savingObject.setCurrentArcNum(1);
@@ -81,7 +81,7 @@ public class ChangeCharacterController : MonoBehaviour
             canvas.gameObject.SetActive(false);
             Debug.Log("Why");
             title.SetText("Witch");
-            content.SetText("Ac nhu quy");
+            content.SetText("Summons lightning to attack the nearest enemy");
 
             savingObject.setCurrentArcNum(2);
             canvasDetails.gameObject.SetActive(true);
@@ -102,8 +102,8 @@ public class ChangeCharacterController : MonoBehaviour
 
             canvas.gameObject.SetActive(false);
             Debug.Log("Why");
-            title.SetText("Giam muc");
-            content.SetText("Lam viec o chua");
+            title.SetText("Bishop");
+            content.SetText("Increase damage to archers");
 
             savingObject.setCurrentArcNum(3);
             canvasDetails.gameObject.SetActive(true);
@@ -122,8 +122,8 @@ public class ChangeCharacterController : MonoBehaviour
 
             canvas.gameObject.SetActive(false);
             Debug.Log("Why");
-            title.SetText("Thien xa");
-            content.SetText("Lam viec o chua");
+            title.SetText("Marksman");
+            content.SetText("Shoots arrows continuously at enemies at super fast speed");
 
             savingObject.setCurrentArcNum(4);
             canvasDetails.gameObject.SetActive(true);
@@ -142,8 +142,8 @@ public class ChangeCharacterController : MonoBehaviour
 
             canvas.gameObject.SetActive(false);
             Debug.Log("Why");
-            title.SetText("Nguoi trieu hoi");
-            content.SetText("Trieu hoi golem tan cong");
+            title.SetText("Summoner");
+            content.SetText("Summon golems to support castle defense");
 
             savingObject.setCurrentArcNum(5);
             canvasDetails.gameObject.SetActive(true);

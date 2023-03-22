@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using static GameStateController;
 
@@ -78,12 +77,12 @@ public class ArcherManager : MonoBehaviour
         if (changeCharacterCanvas.getIsSpawn() == false)
         {
             varA = Instantiate(archer1, pos1.position, Quaternion.identity);
-            var arc2 = Instantiate(archer2, pos2.position, Quaternion.identity);
+            /*var arc2 = Instantiate(archer2, pos2.position, Quaternion.identity);*/
 
             archer[1] = (varA);
-            archer[2] = (arc2);
+            /*archer[2] = (arc2);*/
             ChangeArcher(1, 1);
-            ChangeArcher(2, 2);
+            /*ChangeArcher(2, 2);*/
             changeCharacterCanvas.setIsSpawn(true);
         }
 

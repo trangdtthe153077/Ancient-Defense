@@ -55,18 +55,21 @@ public class Tower : MonoBehaviour
         
     }
     public void LevelUp()
-    {
-        goldmanager.addGold(-goldUpdate);
-        lv++;
-        goldUpdate= 100 *(lv / 5) + 100 *(lv + 1);
-        maxMana = 10 * (lv + 1);
-        maxHealth = 50 * (lv + 1);
-        currentHealth = maxHealth;
-        currentMana = maxMana;
-        towerlv.text ="Lv"+ lv.ToString();
-        goldtext.text = " "+ goldUpdate.ToString();
-        healthtext.text = " "+maxHealth.ToString();
-        manatext.text = " " + maxMana.ToString();
+    {   if(goldmanager.currnetGold >= goldUpdate)
+        {
+            goldmanager.addGold(-goldUpdate);
+            lv++;
+            goldUpdate= 100 *(lv / 5) + 100 *(lv + 1);
+            maxMana += 10 ;
+            maxHealth += 50 ;
+            currentHealth = maxHealth;
+            currentMana = maxMana;
+            towerlv.text ="Lv"+ lv.ToString();
+            goldtext.text = " "+ goldUpdate.ToString();
+            healthtext.text = " "+maxHealth.ToString();
+            manatext.text = " " + maxMana.ToString();
+        }
+        
         
     }
     public void TakeDamage(int damage)
