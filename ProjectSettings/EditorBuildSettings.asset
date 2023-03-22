@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TrangScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/StartSence.unity
+    guid: 885b657447c72d74e982387170a21af7
+  - enabled: 1
+    path: Assets/Scenes/GameSence.unity
+    guid: c74a740c288eed14f8fc09933e59681e
   m_configObjects: {}
