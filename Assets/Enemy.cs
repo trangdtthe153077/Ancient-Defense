@@ -22,29 +22,32 @@ public class Enemy : MonoBehaviour
     private bool isDead = false; // kiểm tra quái đã chết hay chưa
     public bool hasFoundTower = false;
     public GameObject Towerbd;
+	public bool allysPresent = false;
 
 
-    void Start()
+
+	void Start()
     {
         currentHealth = maxHealth;
 
         rb = GetComponent<Rigidbody2D>();
-    }
+		
+	}
 
     void Update()
     {
-        if(!hasFoundTower)
-        {
-            // quái di chuyển sang trái
-            transform.Translate(Vector3.left * 3f * Time.deltaTime);
+		if (!hasFoundTower)
+		{
+			// quái di chuyển sang trái
+			transform.Translate(Vector3.left * 3f * Time.deltaTime);
 
-        }
-       
-        /* GetComponent<Rigidbody2D>().AddForce(-transform.right * 0.5f);*/
-        // Tính toán thời gian giữa hai lần tấn công
-       
-        
-        attackTimer += Time.deltaTime;
+		}
+
+		/* GetComponent<Rigidbody2D>().AddForce(-transform.right * 0.5f);*/
+		// Tính toán thời gian giữa hai lần tấn công
+
+
+		attackTimer += Time.deltaTime;
         if (attackTimer >= attackDelay)
         {
             attackTimer = 0f;
@@ -53,12 +56,14 @@ public class Enemy : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
             foreach (Collider2D collider in colliders)
             {
-                if (collider.tag == "Tower")
+                if (collider.tag == "Tower" || collider.tag == "Ally")
                 {
                     Tower tower = collider.GetComponent<Tower>();
+					SoldierMoving ally = collider.GetComponent<SoldierMoving>();
+					GolemMOving ally2 = collider.GetComponent<GolemMOving>();
 
 
-                    if (tower != null)
+					if (tower != null )
 					{
 
 						// Tower component được tìm thấy
@@ -72,6 +77,27 @@ public class Enemy : MonoBehaviour
 					{
 						// Tower component không tồn tại trên đối tượng
 						Debug.Log("Tower component not found!");
+					}
+					if (ally != null)
+					{
+
+						// Tower component được tìm thấy
+						Debug.Log("Found ally!");
+                        //StartCoroutine(RotateObject());
+                        ally.TakeDamage(damage);
+                        /*       StartCoroutine(RotateObject());*/
+                        StartCoroutine(RotateObject());
+					}
+					else
+					{
+						// Tower component không tồn tại trên đối tượng
+						Debug.Log("Ally component not found!");
+					}
+                    if(ally2 != null)
+                    {
+                        ally2.TakeDamage(damage);
+						StartCoroutine(RotateObject());
+
 					}
 				}
             }
@@ -96,17 +122,28 @@ public class Enemy : MonoBehaviour
     }
 
 	void StopMoving()
-    {
-        // Dừng di chuyển của quái
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-        rb.Sleep();
-    }
+	{
+		if (allysPresent)
+		{
+            Debug.Log("Ngừng di chuyển");
+			rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.Sleep();
 
-    public void TakeDamage(int damage)
+        }
+        else
+		{
+			Debug.Log("tiep tuc di chuyen");
+			rb.WakeUp(); // Kích hoạt tính toán vật lý cho Rigidbody
+			rb.velocity = new Vector2(-2, 0);
+
+		}
+	}
+    
+
+public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -117,25 +154,25 @@ public class Enemy : MonoBehaviour
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
         Destroy(gameObject);
     }
-	
+
 
 	private void OnTriggerEnter2D(Collider2D other)
-    {
-		if (other.gameObject.CompareTag("Tower"))
+	{
+		if (other.gameObject.CompareTag("Ally") || other.gameObject.CompareTag("Tower") )
 		{
-            hasFoundTower= true;
-            StopMoving();
-            Debug.Log("towwwwwwwwwwww");
-          /*  StartCoroutine(RotateObject());*/
-
-        }
-
-		if (other.gameObject.CompareTag("Ground"))
+			hasFoundTower = true;
+            allysPresent = true;
+			StopMoving();
+		}
+		//else
+		//{
+		//	allysPresent = false;
+		//	StopMoving();
+		//}
+        if (other.gameObject.CompareTag("Ground"))
         {
-
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-
     }
 
     public void SetLevel(int lv)

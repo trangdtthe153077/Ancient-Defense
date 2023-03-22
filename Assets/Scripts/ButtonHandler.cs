@@ -9,6 +9,7 @@ public class ButtonHandler : MonoBehaviour
 {
     // Start is called before the first frame update
   private  ChangeCharacterController changeCharacterCanvas;
+    Tower tower;
     ArcherManager manager;
     void Awake()
     {
@@ -17,6 +18,7 @@ public class ButtonHandler : MonoBehaviour
         changeCharacterCanvas = a.GetComponent<ChangeCharacterController>();
         var b = a.GetComponent<Rigidbody2D>();
         Debug.Log(b);
+        tower = GameObject.FindGameObjectWithTag("Tower").gameObject.GetComponent<Tower>();
     }
 
     void Start()
@@ -105,5 +107,9 @@ public class ButtonHandler : MonoBehaviour
         Debug.Log("AA");
         changeCharacterCanvas.TurnOffDetailsCanvas();
 
+    }
+    public void UpdateTower()
+    {
+        tower.LevelUp();
     }
 }
