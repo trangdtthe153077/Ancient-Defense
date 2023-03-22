@@ -23,11 +23,15 @@ public class TH : Archer
     bool success = false;
     public GameObject Golem;
     public float upgradeprice;
+ 
 
     GoldManager goldManager;
+    Archer archer;
+
 
     void Start()
     {
+        archer = gameObject.GetComponent<Archer>();
         goldManager = GameObject.FindGameObjectWithTag("Gold").GetComponent<GoldManager>();
 
         //setup character
@@ -56,6 +60,7 @@ public class TH : Archer
         Debug.Log("bonk");
         btn = GetComponent<Button>();
         gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
+        archer.Damage = Basedmg;
     }
 
     // Update is called once per frame
@@ -64,7 +69,7 @@ public class TH : Archer
         if (success == true && timer.Finished)
         {
             success = false;
-            StopIncreasing();
+  
         }
     }
     public void CallSolider()
@@ -77,21 +82,26 @@ public class TH : Archer
     {
         if (goldManager.currnetGold > upgradeprice)
         {
+            Basedmg +=2;
+            Damage = Basedmg;
             goldManager.addGold((int)-upgradeprice);
             level += 1;
             mana += 2;
             upgradeprice = (price * (level - 1) / 5) + price;
+            archer.Damage = Basedmg;
             return true;
         }
         return false;
     }
     public void setLevel(int lv)
     {
+        Basedmg +=2*lv;
+        Damage = Basedmg;
         lv = lv - 1;
         level += lv;
         mana += lv * 2;
         upgradeprice = (price * (level - 1) / 5) + price;
-
+        archer.Damage = Basedmg;
     }
 
     public void OnButtonClick()
@@ -109,7 +119,7 @@ public class TH : Archer
             delayFinished = true;
             SkillSpawnGolem();
         }
-
+   
     }
 
     
@@ -117,22 +127,15 @@ public class TH : Archer
     {
         // Tạo ra một instance của prefab
         GameObject obj = Instantiate(Golem, transform);
+        obj.gameObject.GetComponent<GolemMOving>().setUp((int)level, Basedmg);
         // Đặt vị trí của đối tượng
         float xPos = -1.64f;
         float yPos = -3.58f;
         obj.transform.position = new Vector3(xPos, yPos, 100);
+        success = false;
     }
 
-    public void StopIncreasing()
-    {
 
-        Archer[] archers = FindObjectsOfType<Archer>();
-        foreach (Archer archer in archers)
-        {
-            archer.Damage = archer.Basedmg;
-            Debug.Log("DMG archer:" + archer.Damage);
-        }
-    }
     public float getLevel()
     {
         return level;

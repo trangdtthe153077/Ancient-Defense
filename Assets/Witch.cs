@@ -14,13 +14,19 @@ public class Witch : Archer
     public float upgradeprice;
     public float skilldmg = 15 * 2;
     GoldManager goldManager;
+    Archer archer;
+
+
     void Start()
     {
+        archer = gameObject.GetComponent<Archer>();
+
         goldManager = GameObject.FindGameObjectWithTag("Gold").GetComponent<GoldManager>();
         Basedmg = 15;
         Damage = Basedmg;
         mana = 40;
         Speed = 1.25f;
+        archer.Damage = Basedmg;
     }
 
     // Update is called once per frame
@@ -39,6 +45,7 @@ public class Witch : Archer
             Basedmg += 2;
             skilldmg = Basedmg * 2 + Basedmg;
             upgradeprice = (price * (level - 1) / 5) + price;
+            archer.Damage = Basedmg;
             return true;
         }
         return false;
@@ -51,6 +58,7 @@ public class Witch : Archer
         Basedmg += lv*2;
         skilldmg = Basedmg * 2 + Basedmg;
         upgradeprice = (price * (level - 1) / 5) + price;
+        archer.Damage = Basedmg;
     }
     public void OnButtonClick()
     {

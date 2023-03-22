@@ -53,16 +53,16 @@ public class ArcherManager : MonoBehaviour
     {
 
         LevelArcherDB = new int[6];
-        LevelArcherDB[1] = 0;
-        LevelArcherDB[2] = 0;
-        LevelArcherDB[3] = 0;
-        LevelArcherDB[4] = 0;
-        LevelArcherDB[5] = 0;
+        LevelArcherDB[1] = 1;
+        LevelArcherDB[2] = 1;
+        LevelArcherDB[3] = 1;
+        LevelArcherDB[4] = 1;
+        LevelArcherDB[5] = 1;
 
         PriceArcherDB = new int[6];
         PriceArcherDB[1] = 500;
         PriceArcherDB[2] = 1000;
-        LevelArcherDB[3] = 2000;
+        PriceArcherDB[3] = 2000;
         PriceArcherDB[4] = 1500;
         PriceArcherDB[5] = 1500;
 
@@ -160,7 +160,7 @@ public class ArcherManager : MonoBehaviour
         }
         else if (archer[pos].tag == "Arin")
         {
-            archer[pos].GetComponent<ArinSkill>().OnButtonClick();
+            archer[pos].GetComponent<Arin>().OnButtonClick();
         }
     }
     public float PriceArcher(int arcNum)
@@ -169,7 +169,7 @@ public class ArcherManager : MonoBehaviour
         {
 
             if (LevelArcherDB[1] == 0)
-            { return PriceArcherDB[1];  }
+            { return PriceArcherDB[1]; }
             return GameObject.FindGameObjectWithTag("Arin").GetComponent<Arin>().upgradeprice;
         }
         else if (arcNum == 2)
@@ -212,6 +212,7 @@ public class ArcherManager : MonoBehaviour
         }
         else if (arcNum == 3)
         {
+            Debug.Log("Level Gm: " + LevelArcherDB[3]);
             return LevelArcherDB[3];
         }
         else if (arcNum == 4)
@@ -262,33 +263,38 @@ public class ArcherManager : MonoBehaviour
                 {
                     if (arcNum == 1)
                     {
-                  if(      archer[i].GetComponent<Arin>().LevelUp() ==true)
-                        LevelArcherDB[1]++;
+                        if (archer[i].GetComponent<Arin>().LevelUp() == true)
+                        {
+                            LevelArcherDB[1]++;
+                        }
+                     
                         changeCharacterController.OnClickSlot1();
                     }
                     else if (arcNum == 2)
                     {
                         Debug.Log("Click on Witch");
-                        if (archer[i].GetComponent<Witch>().LevelUp() ==true)
-                        LevelArcherDB[2]++;
+                        if (archer[i].GetComponent<Witch>().LevelUp() == true)
+                            LevelArcherDB[2]++;
                         changeCharacterController.OnClickSlot2();
                     }
                     else if (arcNum == 3)
                     {
-                    if(    archer[i].GetComponent<GM>().LevelUp() ==true)
-                        LevelArcherDB[3]++;
+                        if (archer[i].GetComponent<GM>().LevelUp() == true)
+                        {
+                            LevelArcherDB[3]++;
+                        }
                         changeCharacterController.OnClickSlot3();
                     }
                     else if (arcNum == 4)
                     {
-                      if(  archer[i].GetComponent<TX>().LevelUp()==true)
-                        LevelArcherDB[4]++;
+                        if (archer[i].GetComponent<TX>().LevelUp() == true)
+                            LevelArcherDB[4]++;
                         changeCharacterController.OnClickSlot4();
                     }
                     else if (arcNum == 5)
                     {
-                     if(   archer[i].GetComponent<TH>().LevelUp()==true)
-                        LevelArcherDB[5]++;
+                        if (archer[i].GetComponent<TH>().LevelUp() == true)
+                            LevelArcherDB[5]++;
                         changeCharacterController.OnClickSlot5();
                     }
                 }
@@ -383,21 +389,27 @@ public class ArcherManager : MonoBehaviour
             case 1:
 
                 arc.gameObject.GetComponent<Arin>().setLevel(LevelArcherDB[arcNum]);
+                changeCharacterController.OnClickSlot1();
                 break;
             case 2:
                 arc.gameObject.GetComponent<Witch>().setLevel(LevelArcherDB[arcNum]);
+                changeCharacterController.OnClickSlot2();
                 break;
             case 3:
                 arc.gameObject.GetComponent<GM>().setLevel(LevelArcherDB[arcNum]);
+                changeCharacterController.OnClickSlot3();
                 break;
             case 4:
                 arc.gameObject.GetComponent<TX>().setLevel(LevelArcherDB[arcNum]);
+                changeCharacterController.OnClickSlot4();
                 break;
             case 5:
                 arc.gameObject.GetComponent<TH>().setLevel(LevelArcherDB[arcNum]);
+                changeCharacterController.OnClickSlot5();
                 break;
 
         }
+
 
 
     }

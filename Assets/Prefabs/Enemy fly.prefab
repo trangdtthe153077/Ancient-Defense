@@ -151,11 +151,15 @@ MonoBehaviour:
   target: {fileID: 0}
   attackDistance: 1
   maxHealth: 10
+  basedamage: 10
   damage: 10
   attackDelay: 2
-  coinPrefab: {fileID: 0}
+  coinPrefab: {fileID: 1537569132943480186, guid: f725c1296c006ea49b25149e7e2ff76d, type: 3}
+  baseCoin: 0
   coinCount: 1
   hasFoundTower: 0
+  Towerbd: {fileID: 0}
+  allysPresent: 0
 --- !u!114 &7750334899180212137
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class GameStateController : MonoBehaviour
 
     public enum GameState { Waiting, Playing }
     public GameState currentState;
-    public int gameLevel=5;
+    public int gameLevel = 5;
     SpawnManager spawnManager;
     public TextMeshProUGUI levelText;
     public Button playBtn;
@@ -27,7 +27,7 @@ public class GameStateController : MonoBehaviour
     {
         timer = gameObject.GetComponent<Timer>();
         timer.Duration = 2;
-       
+
         //readgamelvfromfile;
         //set game level;
         winOrLooseCanvas.gameObject.SetActive(false);
@@ -35,7 +35,7 @@ public class GameStateController : MonoBehaviour
         currentState = GameState.Waiting;
 
         spawnManager = GameObject.FindWithTag("SpawnManager").GetComponent<SpawnManager>();
-        levelText.text = "Level: "+gameLevel;
+        levelText.text = "Level: " + gameLevel;
     }
 
 
@@ -46,34 +46,38 @@ public class GameStateController : MonoBehaviour
         switch (currentState)
         {
             case GameState.Waiting:
-            if(finnishedGame==true&&toggleCanvas==false &&(isWin == true||isLoose==true))
+                if (finnishedGame == true && toggleCanvas == false && (isWin == true || isLoose == true))
                 {
-                   
-                    if(isWin==true)
-                    {    
+                    var list = GameObject.FindGameObjectsWithTag("Ally");
+                    foreach (var a in list)
+                    {
+                        Destroy(a);
+                    }
+                    if (isWin == true)
+                    {
                         stateGameText.text = "You win the game ^^!";
                     }
-                    else if(isLoose==true)
+                    else if (isLoose == true)
                     {
                         stateGameText.text = "You loose this game T_T!";
-                    }    
+                    }
                     winOrLooseCanvas.gameObject.SetActive(true);
-                    
+
                     timer.Run();
-                    toggleCanvas=true;
+                    toggleCanvas = true;
                     isWin = false;
                     isLoose = false;
                 }
-            
 
-            else if ( toggleCanvas == true&& timer.Finished)
+
+                else if (toggleCanvas == true && timer.Finished)
                 {
                     winOrLooseCanvas.gameObject.SetActive(false);
-                    toggleCanvas=false;
-                  
+                    toggleCanvas = false;
+
                     finnishedGame = false;
-                }    
-        
+                }
+
                 break;
             case GameState.Playing:
                 spawnManager.SetLevelOfGame(gameLevel);
@@ -86,15 +90,15 @@ public class GameStateController : MonoBehaviour
     public void StartPlaying()
     {
         // Change state to Playing when user clicks play button
-     
-    
-      if(playBtn.GetComponentInChildren<Text>().text =="Stop")
+
+
+        if (playBtn.GetComponentInChildren<Text>().text == "Stop")
         {
             playBtn.GetComponentInChildren<Text>().text = "Play";
             Debug.Log("Stop game");
             Debug.Log(currentState + "Playing");
-        }    
-      else
+        }
+        else
         {
             playBtn.GetComponentInChildren<Text>().text = "Stop";
             playBtn.interactable = false;
@@ -127,18 +131,18 @@ public class GameStateController : MonoBehaviour
         currentState = GameState.Waiting;
         playBtn.interactable = true;
         playBtn.GetComponentInChildren<Text>().text = "Play";
-    
+
         isWin = false;
         isLoose = true;
         finnishedGame = true;
-
+        updateManager.gameObject.SetActive(true);
 
         levelText.text = "Level: " + gameLevel;
     }
 
     public GameState GetGameState()
     {
-        
+
         return currentState;
     }
     public void SetGameState(GameState gameState)

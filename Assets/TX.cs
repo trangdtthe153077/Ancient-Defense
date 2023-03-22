@@ -19,8 +19,12 @@ public class TX : Archer{
     GoldManager goldManager;
 
     public float upgradeprice;
+    Archer archer;
+
+
     void Start()
     {
+        archer = gameObject.GetComponent<Archer>();
         goldManager = GameObject.FindGameObjectWithTag("Gold").GetComponent<GoldManager>();
         Basedmg = 10;
         Damage = Basedmg;
@@ -29,6 +33,7 @@ public class TX : Archer{
         mana = 40;
         upgradeprice = 500;
         skilldmg = (float)(2.5 / 100);
+        archer.Damage = Basedmg;
     }
 
     // Update is called once per frame
@@ -46,8 +51,10 @@ public class TX : Archer{
             level += 1;
             mana += 2;
             Basedmg += 2;
+            Damage = Basedmg;
             skilldmg = (float)((Basedmg * 0.05 * level) + Basedmg); ;
             upgradeprice = (price * (level - 1) / 5) + price;
+            archer.Damage = Basedmg;
             return true;
         }
         return false;
@@ -61,7 +68,8 @@ public class TX : Archer{
         Damage = Basedmg;
         skilldmg = (float)((Basedmg * 0.05 * level) + Basedmg); ;
         upgradeprice = (price * (level - 1) / 5) + price;
-    
+        archer.Damage = Basedmg;
+
     }
     public void OnButtonClick()
     {

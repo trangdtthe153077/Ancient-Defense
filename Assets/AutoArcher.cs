@@ -71,6 +71,10 @@ public class AutoArcher : MonoBehaviour
     void Fire(Vector3 target)
     {
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+        if (GetComponent<Arin>() != null)
+        { Debug.Log("Fire dmg" + archer.Damage); }
+
+        arrow.GetComponent<Arrow>().setDamage((int)archer.Damage);
         Vector3 direction = target - transform.position;
 
         arrow.GetComponent<Rigidbody2D>().velocity = direction * 3f;

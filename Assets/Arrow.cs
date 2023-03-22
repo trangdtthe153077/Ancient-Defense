@@ -19,10 +19,14 @@ public class Arrow : MonoBehaviour
     int arcHeight = 5;
 
 
+    public void setDamage(int dmg)
+    {
+        damage = dmg;
+    }    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        damage = 5;
+
         /*      rb.gravityScale = 0.3f;*/
         Destroy(gameObject, 3);
 

@@ -23,8 +23,12 @@ public class GM : Archer{
     public float upgradeprice;
 
     GoldManager goldManager;
+    Archer archer;
+
+
     void Start()
     {
+        archer = gameObject.GetComponent<Archer>();
         goldManager = GameObject.FindGameObjectWithTag("Gold").GetComponent<GoldManager>();
 //set up char
         Basedmg = 10;
@@ -40,23 +44,26 @@ public class GM : Archer{
 
         //--------------------------------------
         timer =  gameObject.AddComponent<Timer>();
-        timer.Duration = 1;
+   
         delayTimer = gameObject.AddComponent<Timer>();
         delayTimer.Duration = 5f;
    tower= GameObject.FindWithTag("Tower").GetComponent<Tower>();
-        manatower= tower.getMana();
+     
         Debug.Log("mana tower: "+manatower);
         Debug.Log("bonk");
          btn = GetComponent<Button>();
-        btn.onClick.AddListener(OnButtonClick);
+      
         gameStateController  = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
+        archer.Damage = Basedmg;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(success==true && timer.Finished )
+        manatower = tower.getMana();
+        if (success==true && timer.Finished )
         {
+            Debug.Log("time end");
             success = false;
             StopIncreasing();
         }
@@ -79,6 +86,7 @@ public class GM : Archer{
             skilldmg = 0.5f + (0.025f * level);
             efftime += 0.2f;
             upgradeprice = (500 * (level - 1) / 5) + 500; ;
+            archer.Damage = Basedmg;
             return true;
         }
         return false;
@@ -91,15 +99,17 @@ public class GM : Archer{
         Basedmg += lv * 2;
         Damage = Basedmg;
         skilldmg = 0.5f + (0.025f * level);
-        efftime += 0.2f;
-        upgradeprice = (500 * (level - 1) / 5) + 500; ;
+        efftime += 0.2f*lv;
+        upgradeprice = (500 * (level - 1) / 5) + 500;
+        archer.Damage = Basedmg;
     }
     public void OnButtonClick()
     {
 
-        Debug.Log("BUtton called");
+        Debug.Log("time start BUtton called");
         if ((manatower-mana>=0)&& success == false && ( delayTimer.Finished || delayFinished==false))
         {
+            timer.Duration = efftime;
             manatower = manatower - mana;
             tower.setMana(manatower);
             Debug.Log("mana: "+ manatower);
@@ -131,6 +141,7 @@ public class GM : Archer{
     }
     public void StopIncreasing()
     {
+        Debug.Log("Stop increasing");
 
         Archer[] archers = FindObjectsOfType<Archer>();
         foreach (Archer archer in archers)
