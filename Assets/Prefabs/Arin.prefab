@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1254787507111231870}
   - component: {fileID: 1254787507111231871}
   - component: {fileID: 1254787507111231864}
-  - component: {fileID: -4367318329194347729}
   - component: {fileID: -356187565229014511}
+  - component: {fileID: -4367318329194347729}
   m_Layer: 0
   m_Name: Arin
   m_TagString: Arin
@@ -116,28 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee3be93cb862084f9c6cc37fbb6945c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-4367318329194347729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254787507111231865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f02a5ac622b64b342b9ccc70f98b0d2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manatower: 0
-  delay: 25
-  mana: 20
-  price: 500
-  level: 1
-  skilldmg: 0.025
-  efftime: 5
-  btn: {fileID: 0}
-  Soldier: {fileID: 3005519921814273048, guid: f52a73c15ce4af54ba24fccdccadc91b, type: 3}
-  spacing: 1.3
 --- !u!114 &-356187565229014511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,3 +138,25 @@ MonoBehaviour:
   btn: {fileID: 0}
   WitchSkillGen: {fileID: 7592904870676430705, guid: 08e7612d74c77bf47886bc0c6fea7003, type: 3}
   spacing: 0
+--- !u!114 &-4367318329194347729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254787507111231865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02a5ac622b64b342b9ccc70f98b0d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manatower: 0
+  delay: 25
+  mana: 20
+  price: 500
+  level: 1
+  skilldmg: 0.025
+  efftime: 5
+  btn: {fileID: 0}
+  Soldier: {fileID: 3005519921814273048, guid: f52a73c15ce4af54ba24fccdccadc91b, type: 3}
+  spacing: 1.3
