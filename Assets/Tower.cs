@@ -40,6 +40,9 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        goldtext.text = " " + goldUpdate.ToString();
+        healthtext.text = " " + currentHealth.ToString();
+        manatext.text = " " + currentMana.ToString();
         if (timer.Finished)
         {
             if (currentMana < maxMana)
@@ -58,6 +61,8 @@ public class Tower : MonoBehaviour
         goldUpdate= 100 *(lv / 5) + 100 *(lv + 1);
         maxMana = 10 * (lv + 1);
         maxHealth = 50 * (lv + 1);
+        currentHealth = maxHealth;
+        currentMana = maxMana;
         towerlv.text ="Lv"+ lv.ToString();
         goldtext.text = " "+ goldUpdate.ToString();
         healthtext.text = " "+maxHealth.ToString();
