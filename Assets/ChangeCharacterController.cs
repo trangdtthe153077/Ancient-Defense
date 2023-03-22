@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using static GameStateController;
 
 public class ChangeCharacterController : MonoBehaviour
@@ -14,16 +13,11 @@ public class ChangeCharacterController : MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI content;
     public TextMeshProUGUI level;
-    public Text pricebtn;
-    public Button priceBtn;
-    public Button changeBtn;
     public int currentSlot;
     public int CurrentArcNum;
 
     GameStateController gameStateController;
     SavingObject savingObject;
-
-    private float priceUpgradeOrBuy;
     void Start()
     {
         gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
@@ -31,7 +25,7 @@ public class ChangeCharacterController : MonoBehaviour
         manager = GameObject.FindGameObjectWithTag("ArcherManager").GetComponent<ArcherManager>();
         /*
                 canvasDetails = GameObject.FindGameObjectWithTag("Char-Details")?.GetComponent<Canvas>();*/
-        canvas.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -51,206 +45,87 @@ public class ChangeCharacterController : MonoBehaviour
 
     public void OnClickSlot1()
     {
+    
+            if (canvasDetails.gameObject.activeSelf == false)
+            {
+                canvas.gameObject.SetActive(false);
 
-        if (canvasDetails.gameObject.activeSelf == false)
-        {
+                title.SetText("Arin");
+                content.SetText("Nhan vat chinh");
+                level.SetText("Level: 20");
 
 
-            canvas.gameObject.SetActive(false);
-
-            title.SetText("Arin");
-            content.SetText("Arin is the leader of the army against monsters and the main character in the story. He is a talented and careful warrior, full of faith and ready to fight to protect humanity.");
-
-
-            savingObject.setCurrentArcNum(1);
-            canvasDetails.gameObject.SetActive(true);
-        }
-
-        level.SetText("Level: " + manager.LevelArcher(1));
-        BuyOrUpgrade(1);
+                savingObject.setCurrentArcNum(1);
+                canvasDetails.gameObject.SetActive(true);
+            }
 
 
 
     }
     public void OnClickSlot2()
     {
-
-        if (canvasDetails.gameObject.activeSelf == false)
-        {
-
-            canvas.gameObject.SetActive(false);
-            Debug.Log("Why");
-            title.SetText("Witch");
-            content.SetText("Ac nhu quy");
-
-            savingObject.setCurrentArcNum(2);
-            canvasDetails.gameObject.SetActive(true);
-
+       
+            if (canvasDetails.gameObject.activeSelf == false)
+            {
+                canvas.gameObject.SetActive(false);
+                Debug.Log("Why");
+                title.SetText("Witch");
+                content.SetText("Ac nhu quy");
+                level.SetText("Level: 20");
+                savingObject.setCurrentArcNum(2);
+                canvasDetails.gameObject.SetActive(true);
+      
         }
-
-        level.SetText("Level: " + manager.LevelArcher(2));
-        ///
-        BuyOrUpgrade(2);
 
     }
 
     public void OnClickSlot3()
     {
-
-        if (canvasDetails.gameObject.activeSelf == false)
-        {
-
-            canvas.gameObject.SetActive(false);
-            Debug.Log("Why");
-            title.SetText("Giam muc");
-            content.SetText("Lam viec o chua");
-
-            savingObject.setCurrentArcNum(3);
-            canvasDetails.gameObject.SetActive(true);
-
+        
+            if (canvasDetails.gameObject.activeSelf == false)
+            {
+                canvas.gameObject.SetActive(false);
+                Debug.Log("Why");
+                title.SetText("Giam muc");
+                content.SetText("Lam viec o chua");
+                level.SetText("Level: 20");
+                savingObject.setCurrentArcNum(3);
+                canvasDetails.gameObject.SetActive(true);
+         
         }
-
-        level.SetText("Level: " + manager.LevelArcher(3));
-        BuyOrUpgrade(3);
 
     }
     public void OnClickSlot4()
     {
-
-        if (canvasDetails.gameObject.activeSelf == false)
-        {
-
-            canvas.gameObject.SetActive(false);
-            Debug.Log("Why");
-            title.SetText("Thien xa");
-            content.SetText("Lam viec o chua");
-
-            savingObject.setCurrentArcNum(4);
-            canvasDetails.gameObject.SetActive(true);
-
+      
+            if (canvasDetails.gameObject.activeSelf == false)
+            {
+                canvas.gameObject.SetActive(false);
+                Debug.Log("Why");
+                title.SetText("Thien xa");
+                content.SetText("Lam viec o chua");
+                level.SetText("Level: 20");
+                savingObject.setCurrentArcNum(4);
+                canvasDetails.gameObject.SetActive(true);
+    
         }
-
-        level.SetText("Level: " + manager.LevelArcher(4));
-        BuyOrUpgrade(4);
     }
 
     public void OnClickSlot5()
     {
-
-        if (canvasDetails.gameObject.activeSelf == false)
-        {
-
-            canvas.gameObject.SetActive(false);
-            Debug.Log("Why");
-            title.SetText("Nguoi trieu hoi");
-            content.SetText("Trieu hoi golem tan cong");
-
-            savingObject.setCurrentArcNum(5);
-            canvasDetails.gameObject.SetActive(true);
-
+        
+            if (canvasDetails.gameObject.activeSelf == false)
+            {
+                canvas.gameObject.SetActive(false);
+                Debug.Log("Why");
+                title.SetText("Nguoi trieu hoi");
+                content.SetText("Trieu hoi golem tan cong");
+                level.SetText("Level: 20");
+                savingObject.setCurrentArcNum(5);
+                canvasDetails.gameObject.SetActive(true);
+     
         }
-
-        level.SetText("Level: " + manager.LevelArcher(5));
-
-        BuyOrUpgrade(5);
-    }
-
-    public void BuyOrUpgrade(int arcNum)
-
-    {
-        string tagName;
-
-        switch (arcNum)
-        {
-            case 1:
-                tagName = "Arin";
-                if(GameObject.FindGameObjectWithTag(tagName)==null)
-                {
-                    pricebtn.text = "Upgrade -- ";
-                    priceBtn.interactable = false;
-                   
-                }    
-                else
-                {
-                    var price = manager.PriceArcher(1);
-                    pricebtn.text = "Upgrade " + price;
-                    priceBtn.interactable = true;
-                }    
-            
-                break;
-
-            case 2:
-
-                tagName = "Witch";
-                if (GameObject.FindGameObjectWithTag(tagName) == null)
-                {
-                    pricebtn.text = "Upgrade -- ";
-                    priceBtn.interactable = false;
-                }
-                else
-                {
-                    var price = manager.PriceArcher(2);
-                    pricebtn.text = "Upgrade " + price;
-                    priceBtn.interactable = true;
-                }
-                break;
-            case 3:
-
-                tagName = "GM";
-                if (GameObject.FindGameObjectWithTag(tagName) == null)
-                {
-                    pricebtn.text = "Upgrade -- ";
-                    priceBtn.interactable = false;
-                }
-                else
-                {
-                    var price = manager.PriceArcher(3);
-                    pricebtn.text = "Upgrade " + price;
-                    priceBtn.interactable = true;
-                }
-                break;
-            case 4:
-                tagName = "TX";
-                if (GameObject.FindGameObjectWithTag(tagName) == null)
-                {
-                    pricebtn.text = "Upgrade -- ";
-                    priceBtn.interactable = false;
-                }
-                else
-                {
-                    var price = manager.PriceArcher(4);
-                    pricebtn.text = "Upgrade " + price;
-                    priceBtn.interactable = true;
-                }
-                /*       if (manager.LevelArcher(4) == 0)
-                       {
-                           pricebtn.text = "Buy Archer " + price;
-
-                       }
-                       else
-                       {
-                           pricebtn.text = "Upgrade " + price;
-
-                       }*/
-                break;
-            case 5:
-                tagName = "TH";
-                if (GameObject.FindGameObjectWithTag(tagName) == null)
-                {
-                    pricebtn.text = "Upgrade -- ";
-                    priceBtn.interactable = false;
-                }
-                else
-                {
-                    var price = manager.PriceArcher(5);
-                    pricebtn.text = "Upgrade " + price;
-                    priceBtn.interactable = true;
-                }
-                break;
-
-                
-        }
-
+    
     }
 
     public void ChangePos()
@@ -261,7 +136,6 @@ public class ChangeCharacterController : MonoBehaviour
 
         manager.ChangeArcher(CurrentArcNum, currentSlot);
     }
-
     public void UseSkill()
     {
         currentSlot = savingObject.getCurrentSlot();
@@ -274,10 +148,6 @@ public class ChangeCharacterController : MonoBehaviour
     public void Upgrade()
     {
 
-        CurrentArcNum = savingObject.getCurrentArcNum();
-        Debug.Log("Current num: " + CurrentArcNum + "," + currentSlot);
-
-        manager.UpgradeArcher(CurrentArcNum);
     }
     public void SetPosNum(int num)
     {

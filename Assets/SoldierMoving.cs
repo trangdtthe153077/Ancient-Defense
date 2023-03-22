@@ -6,7 +6,7 @@ public class SoldierMoving : MonoBehaviour
 {
 	private Rigidbody2D rb;
 
-	public float damage = 1;
+	public int damage = 1;
 	public int maxHealth = 10;
 	private int currentHealth;
 	public float attackSpeed = 1.0f;
@@ -15,22 +15,11 @@ public class SoldierMoving : MonoBehaviour
 	public bool hasFoundEnemy = false;
 	public bool enemiesPresent = false;
 
-	public float attackTimer=0f;
 
-
-	public void setUp(int dmgMainArcher)
-	{
-		damage = dmgMainArcher/2;
-        maxHealth = 3 * dmgMainArcher;
-		currentHealth = maxHealth;
-
-        Debug.Log("damage solider " + damage + " health solider" + currentHealth);
-	}	
 	void Start()
     {
 		currentHealth = maxHealth;
 		rb = GetComponent<Rigidbody2D>();
-
 
 	}
 	void StopMoving()
@@ -83,29 +72,24 @@ public class SoldierMoving : MonoBehaviour
 
 
 		}
-        attackTimer += Time.deltaTime;
-		if (attackTimer >= attackSpeed)
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+		foreach (Collider2D collider in colliders)
 		{
-			attackTimer = 0f;
-			Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
-			foreach (Collider2D collider in colliders)
+			if (collider.tag == "Enemy")
 			{
-				if (collider.tag == "Enemy")
+				Enemy enemy = collider.GetComponent<Enemy>();
+
+
+				if (enemy != null)
 				{
-					Enemy enemy = collider.GetComponent<Enemy>();
+					enemy.TakeDamage(damage);
+					StartCoroutine(RotateObject());
 
-
-					if (enemy != null)
-					{
-						enemy.TakeDamage((int)damage);
-						StartCoroutine(RotateObject());
-
-					}
-					else
-					{
-
-						//Tower component không tồn tại trên đối tượng
-					}
+				}
+				else
+				{
+					
+					//Tower component không tồn tại trên đối tượng
 				}
 			}
 		}

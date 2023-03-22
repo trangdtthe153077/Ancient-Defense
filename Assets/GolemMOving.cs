@@ -7,7 +7,7 @@ public class GolemMOving : MonoBehaviour
 	// Start is called before the first frame update
 	private Rigidbody2D rb;
 
-	public float damage = 10;
+	public int damage = 10;
 	public int maxHealth = 150;
 	private int currentHealth;
 	public float attackSpeed = 1.0f;
@@ -22,15 +22,7 @@ public class GolemMOving : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 
 	}
-    public void setUp(int lvArcher, float dmgMainArcher)
-    {
-        damage = dmgMainArcher * 2 + dmgMainArcher*lvArcher*0.2f;
-        maxHealth = 150 + lvArcher*20;
-        currentHealth = maxHealth;
-
-        Debug.Log("damage solider " + damage + " health solider" + currentHealth);
-    }
-    void StopMoving()
+	void StopMoving()
 	{
 		if (enemiesPresent)
 		{
@@ -89,7 +81,7 @@ public class GolemMOving : MonoBehaviour
 
 				if (enemy != null)
 				{
-					enemy.TakeDamage((int)damage);
+					enemy.TakeDamage(damage);
 					StartCoroutine(RotateObject());
 
 				}

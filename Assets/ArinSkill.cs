@@ -22,7 +22,7 @@ public class ArinSkill : Archer
     bool delayFinished = false;
     bool success = false;
     public GameObject Soldier;
-    public float spacing=10;
+    public float spacing;
 
     void Start()
     {
@@ -85,11 +85,10 @@ public class ArinSkill : Archer
     {
         for (int i = 0; i < 5; i++)
         {
-            Debug.Log("Spawn quái number " + i);
             // Tạo ra một instance của prefab
             GameObject obj = Instantiate(Soldier, transform);
             // Đặt vị trí của đối tượng
-            float xPos = -2.44f + i * 2;
+            float xPos = -2.44f + i * spacing;
             float yPos = -5.18f;
             obj.transform.position = new Vector3(xPos, yPos, 100);
         }

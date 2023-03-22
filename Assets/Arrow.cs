@@ -19,14 +19,10 @@ public class Arrow : MonoBehaviour
     int arcHeight = 5;
 
 
-    public void setDamage(int dmg)
-    {
-        damage = dmg;
-    }    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        damage = 5;
         /*      rb.gravityScale = 0.3f;*/
         Destroy(gameObject, 3);
 
@@ -38,6 +34,8 @@ public class Arrow : MonoBehaviour
         float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
         /*        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
         transform.rotation= Quaternion.Euler(0, 0, Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg);
+
+
 
     }
 
@@ -52,5 +50,8 @@ public class Arrow : MonoBehaviour
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
+      
     }
+
+
 }

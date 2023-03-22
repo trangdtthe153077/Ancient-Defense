@@ -2223,14 +2223,12 @@ MonoBehaviour:
   pos3: {fileID: 1208745568}
   pos4: {fileID: 1591118331}
   archer1: {fileID: 1254787507111231865, guid: 203c26c8faa589043b4358a831216a66, type: 3}
-  archer2: {fileID: 7433390243397982595, guid: 355ab87475fd3574fb629117dc55a99d, type: 3}
-  archer3: {fileID: 9206073013205919465, guid: 19a25a47160cd294bb7baf0124396001, type: 3}
-  archer4: {fileID: 3944040891060132613, guid: 713fe3f180b08ce4db5e017458c5cb41, type: 3}
-  archer5: {fileID: 995813515936695530, guid: d52282a83d0bef346ab512d6ee11bca7, type: 3}
+  archer2: {fileID: 1830975341464711972, guid: d442f271a7d4c1a4a97f6c02ad3b2f8c, type: 3}
+  archer3: {fileID: 1219192113983532532, guid: e5b4068ef9edb0d4d982758c53560cd1, type: 3}
+  archer4: {fileID: 5591798112538606428, guid: 1b9846f512b516c46831979fd55993d5, type: 3}
+  archer5: {fileID: 6129293082901811446, guid: 450831781fa2acd419b5ae7dd586219f, type: 3}
   ChangeCharCanvas: {fileID: 492276790}
   ChangeCharDetailsCanvas: {fileID: 696051662}
-  LevelArcherDB: 
-  PriceArcherDB: 
 --- !u!224 &428152845
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2798,9 +2796,6 @@ MonoBehaviour:
   title: {fileID: 1426579310}
   content: {fileID: 1449279177}
   level: {fileID: 543606666}
-  pricebtn: {fileID: 1433033822}
-  priceBtn: {fileID: 959477871}
-  changeBtn: {fileID: 959477871}
   currentSlot: 0
   CurrentArcNum: 0
 --- !u!114 &492276793
@@ -3297,8 +3292,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4685,7 +4680,6 @@ GameObject:
   - component: {fileID: 959477873}
   - component: {fileID: 959477872}
   - component: {fileID: 959477871}
-  - component: {fileID: 959477874}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -4757,19 +4751,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 959477872}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 959477874}
-        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
-        m_MethodName: Upgrade
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &959477872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4808,18 +4790,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959477869}
   m_CullTransparentMesh: 1
---- !u!114 &959477874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 959477869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1688fafa52322d64b857028275925ef7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &972811804
 GameObject:
   m_ObjectHideFlags: 0
@@ -7367,7 +7337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3335849351933705699, guid: ccd18da45441be448b632bb44c922adc, type: 3}
   enemyFlyPrefab: {fileID: 3916345499859891633, guid: 7bf9a071e0a99564e969ccb3ff450101, type: 3}
-  eneflyTransform: {fileID: 1548141657}
   currentEnemyChosen: 0
   waveInterval: 10
   spawnInterval: 1
@@ -7385,8 +7354,7 @@ Transform:
   m_LocalPosition: {x: 13.48, y: -5.24, z: 733.2621}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1548141657}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7525,37 +7493,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515853815}
   m_CullTransparentMesh: 1
---- !u!1 &1548141656
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1548141657}
-  m_Layer: 0
-  m_Name: transform bay
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1548141657
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548141656}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1492906238}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1560853633
 GameObject:
   m_ObjectHideFlags: 0
@@ -8203,9 +8140,6 @@ MonoBehaviour:
   title: {fileID: 1426579310}
   content: {fileID: 1449279177}
   level: {fileID: 543606666}
-  pricebtn: {fileID: 0}
-  priceBtn: {fileID: 0}
-  changeBtn: {fileID: 0}
   currentSlot: 0
   CurrentArcNum: 0
 --- !u!114 &1657661396

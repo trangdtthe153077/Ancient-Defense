@@ -99,11 +99,6 @@ public class ButtonHandler : MonoBehaviour
         changeCharacterCanvas.ChangePos();
 
     }
-    public void Upgrade()
-    {
-        changeCharacterCanvas.Upgrade();
-
-    }
     public void CloseCharDetails()
     {
         Debug.Log("AA");

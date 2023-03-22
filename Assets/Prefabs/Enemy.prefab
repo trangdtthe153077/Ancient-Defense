@@ -107,7 +107,7 @@ MonoBehaviour:
   basedamage: 10
   damage: 7
   attackDelay: 2
-  coinPrefab: {fileID: 1537569132943480186, guid: f725c1296c006ea49b25149e7e2ff76d, type: 3}
+  coinPrefab: {fileID: 0}
   baseCoin: 20
   coinCount: 1
   hasFoundTower: 0
