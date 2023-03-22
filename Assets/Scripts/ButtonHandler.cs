@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class ButtonHandler : MonoBehaviour
 {
     // Start is called before the first frame update
-  private  ChangeCharacterController changeCharacterCanvas;
+    private  ChangeCharacterController changeCharacterCanvas;
     Tower tower;
     ArcherManager manager;
     void Awake()
@@ -20,6 +20,8 @@ public class ButtonHandler : MonoBehaviour
         Debug.Log(b);
         tower = GameObject.FindGameObjectWithTag("Tower").gameObject.GetComponent<Tower>();
     }
+
+
 
     void Start()
     {

@@ -149,5 +149,6 @@ MonoBehaviour:
   damage: 1
   maxHealth: 10
   attackSpeed: 1
-  speed: 1.8
+  speed: 0.1
   hasFoundEnemy: 0
+  enemiesPresent: 0
