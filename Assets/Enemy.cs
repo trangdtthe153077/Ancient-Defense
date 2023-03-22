@@ -31,22 +31,23 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
 
         rb = GetComponent<Rigidbody2D>();
-    }
+		
+	}
 
     void Update()
     {
-        if(!hasFoundTower)
-        {
-            // quái di chuyển sang trái
-            transform.Translate(Vector3.left * 3f * Time.deltaTime);
+		if (!hasFoundTower)
+		{
+			// quái di chuyển sang trái
+			transform.Translate(Vector3.left * 3f * Time.deltaTime);
 
-        }
-       
-        /* GetComponent<Rigidbody2D>().AddForce(-transform.right * 0.5f);*/
-        // Tính toán thời gian giữa hai lần tấn công
-       
-        
-        attackTimer += Time.deltaTime;
+		}
+
+		/* GetComponent<Rigidbody2D>().AddForce(-transform.right * 0.5f);*/
+		// Tính toán thời gian giữa hai lần tấn công
+
+
+		attackTimer += Time.deltaTime;
         if (attackTimer >= attackDelay)
         {
             attackTimer = 0f;
@@ -81,11 +82,11 @@ public class Enemy : MonoBehaviour
 					{
 
 						// Tower component được tìm thấy
-						Debug.Log("Found Tower!");
-						//StartCoroutine(RotateObject());
-						ally.TakeDamage(damage);
-						/*       StartCoroutine(RotateObject());*/
-						StartCoroutine(RotateObject());
+						Debug.Log("Found ally!");
+                        //StartCoroutine(RotateObject());
+                        ally.TakeDamage(damage);
+                        /*       StartCoroutine(RotateObject());*/
+                        StartCoroutine(RotateObject());
 					}
 					else
 					{
@@ -122,25 +123,27 @@ public class Enemy : MonoBehaviour
 
 	void StopMoving()
 	{
-		if (GameObject.FindGameObjectWithTag("Tower") || GameObject.FindGameObjectWithTag("Ally"))
+		if (allysPresent)
 		{
-			Debug.Log("Found tower or ally, stopping movement.");
+            Debug.Log("Ngừng di chuyển");
 			rb.velocity = Vector2.zero;
-			rb.angularVelocity = 0f;
-			rb.Sleep();
-		}
-		else
+            rb.angularVelocity = 0f;
+            rb.Sleep();
+
+        }
+        else
 		{
-			Debug.Log("No tower or ally found, continuing movement.");
-			rb.WakeUp();
-			rb.velocity = new Vector2(-1, 0);
+			Debug.Log("tiep tuc di chuyen");
+			rb.WakeUp(); // Kích hoạt tính toán vật lý cho Rigidbody
+			rb.velocity = new Vector2(-2, 0);
+
 		}
 	}
+    
 
-	public void TakeDamage(int damage)
+public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -151,23 +154,25 @@ public class Enemy : MonoBehaviour
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
         Destroy(gameObject);
     }
-	
+
 
 	private void OnTriggerEnter2D(Collider2D other)
-    {
-		if (other.gameObject.CompareTag("Tower") || other.gameObject.CompareTag("Ally"))
+	{
+		if (other.gameObject.CompareTag("Ally") || other.gameObject.CompareTag("Tower") )
 		{
-            hasFoundTower= true;
+			hasFoundTower = true;
+            allysPresent = true;
 			StopMoving();
-			StartCoroutine(RotateObject());
 		}
-
-		if (other.gameObject.CompareTag("Ground"))
+		//else
+		//{
+		//	allysPresent = false;
+		//	StopMoving();
+		//}
+        if (other.gameObject.CompareTag("Ground"))
         {
-
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
-
     }
 
     public void SetLevel(int lv)

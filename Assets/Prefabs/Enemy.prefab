@@ -112,6 +112,7 @@ MonoBehaviour:
   coinCount: 1
   hasFoundTower: 0
   Towerbd: {fileID: 0}
+  allysPresent: 0
 --- !u!50 &6001768655770264630
 Rigidbody2D:
   serializedVersion: 4
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3335849351933705699}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ffc104f10991a84bb80513ea8f20019, type: 3}
   m_Name: 
