@@ -10,17 +10,25 @@ public class TX : Archer{
     public int manatower;
     public float delay = 20f;
     public int mana = 50;
-    public float price = 500;
+    public float price = 1500;
     public float level = 1;
     public float skilldmg = (float)(2.5 / 100);
     public float efftime = 5;
     public Button btn;
     GameStateController gameStateController;
+    GoldManager goldManager;
 
     public float upgradeprice;
     void Start()
     {
-  
+        goldManager = GameObject.FindGameObjectWithTag("Gold").GetComponent<GoldManager>();
+        Basedmg = 10;
+        Damage = Basedmg;
+        Speed = 0.75f;
+        delay = 25;
+        mana = 40;
+        upgradeprice = 500;
+        skilldmg = (float)(2.5 / 100);
     }
 
     // Update is called once per frame
@@ -30,19 +38,39 @@ public class TX : Archer{
     }
 
 
-    public void LevelUp()
+    public bool LevelUp()
     {
-        level += 1;
-        mana += 1;
-        Damage += 2;
-        skilldmg = skilldmg + 5 / 100 * skilldmg;
-        upgradeprice = (500 * (level - 1) / 5) + 500; ;
+        if (goldManager.currnetGold > upgradeprice)
+        {
+            goldManager.addGold((int)-upgradeprice);
+            level += 1;
+            mana += 2;
+            Basedmg += 2;
+            skilldmg = (float)((Basedmg * 0.05 * level) + Basedmg); ;
+            upgradeprice = (price * (level - 1) / 5) + price;
+            return true;
+        }
+        return false;
     }
-
+    public void setLevel(int lv)
+    {
+        lv = lv - 1;
+        level += lv;
+        mana += lv * 2;
+        Basedmg += lv * 2;
+        Damage = Basedmg;
+        skilldmg = (float)((Basedmg * 0.05 * level) + Basedmg); ;
+        upgradeprice = (price * (level - 1) / 5) + price;
+    
+    }
     public void OnButtonClick()
     {
 
       
+    }
+    public float getLevel()
+    {
+        return level;
     }
 
 }

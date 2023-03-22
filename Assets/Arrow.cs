@@ -35,8 +35,6 @@ public class Arrow : MonoBehaviour
         /*        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
         transform.rotation= Quaternion.Euler(0, 0, Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg);
 
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,8 +48,5 @@ public class Arrow : MonoBehaviour
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
-      
     }
-
-
 }

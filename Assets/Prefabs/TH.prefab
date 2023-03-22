@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6129293082901811442
 Transform:
   m_ObjectHideFlags: 0
@@ -136,3 +136,4 @@ MonoBehaviour:
   efftime: 5
   btn: {fileID: 0}
   Golem: {fileID: 4478562347829536844, guid: 510b75a391bf16d48a8a1b15754f9dee, type: 3}
+  upgradeprice: 0

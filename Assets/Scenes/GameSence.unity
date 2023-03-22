@@ -1941,12 +1941,14 @@ MonoBehaviour:
   pos3: {fileID: 1208745568}
   pos4: {fileID: 1591118331}
   archer1: {fileID: 1254787507111231865, guid: 203c26c8faa589043b4358a831216a66, type: 3}
-  archer2: {fileID: 1830975341464711972, guid: d442f271a7d4c1a4a97f6c02ad3b2f8c, type: 3}
-  archer3: {fileID: 1219192113983532532, guid: e5b4068ef9edb0d4d982758c53560cd1, type: 3}
+  archer2: {fileID: 1691108979381548201, guid: 3cf40e4ea48983841aace2a6e2e01991, type: 3}
+  archer3: {fileID: 3312739241170907552, guid: ec5efbf770ef4da47a9a051706ffc355, type: 3}
   archer4: {fileID: 5591798112538606428, guid: 1b9846f512b516c46831979fd55993d5, type: 3}
   archer5: {fileID: 6129293082901811446, guid: 450831781fa2acd419b5ae7dd586219f, type: 3}
   ChangeCharCanvas: {fileID: 492276790}
   ChangeCharDetailsCanvas: {fileID: 696051662}
+  LevelArcherDB: 
+  PriceArcherDB: 
 --- !u!224 &428152845
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2514,6 +2516,7 @@ MonoBehaviour:
   title: {fileID: 1426579310}
   content: {fileID: 1449279177}
   level: {fileID: 543606666}
+  pricebtn: {fileID: 1433033822}
   currentSlot: 0
   CurrentArcNum: 0
 --- !u!114 &492276793
@@ -3662,9 +3665,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 787184622}
+  - component: {fileID: 787184623}
   m_Layer: 0
   m_Name: GoldBar
-  m_TagString: Untagged
+  m_TagString: Gold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3686,6 +3690,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &787184623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787184621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde112ccb48c2be4ab8657c2eae7e31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currnetGold: 10000
+  goldtxext: {fileID: 1730501221}
 --- !u!1 &856847328
 GameObject:
   m_ObjectHideFlags: 0
@@ -4356,8 +4374,9 @@ GameObject:
   - component: {fileID: 959477873}
   - component: {fileID: 959477872}
   - component: {fileID: 959477871}
+  - component: {fileID: 959477874}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4381,8 +4400,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 718.14, y: -205.19}
-  m_SizeDelta: {x: 219.26, y: 91.3}
+  m_AnchoredPosition: {x: 653.85, y: -180}
+  m_SizeDelta: {x: 350, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959477871
 MonoBehaviour:
@@ -4427,7 +4446,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 959477872}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 959477874}
+        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &959477872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4466,6 +4497,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959477869}
   m_CullTransparentMesh: 1
+--- !u!114 &959477874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959477869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1688fafa52322d64b857028275925ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &972811804
 GameObject:
   m_ObjectHideFlags: 0
@@ -4934,7 +4977,7 @@ GameObject:
   - component: {fileID: 1039493083}
   - component: {fileID: 1039493082}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5276,7 +5319,7 @@ GameObject:
   - component: {fileID: 1098918251}
   - component: {fileID: 1098918250}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Changepos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5300,8 +5343,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 182.3, y: -205.19}
-  m_SizeDelta: {x: 219.26, y: 91.3}
+  m_AnchoredPosition: {x: 247.67, y: -180}
+  m_SizeDelta: {x: 350, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1098918250
 MonoBehaviour:
@@ -6671,7 +6714,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nang cap
+  m_Text: 'Nang cap
+
+    2000'
 --- !u!222 &1433033823
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7527,6 +7572,7 @@ MonoBehaviour:
   title: {fileID: 1426579310}
   content: {fileID: 1449279177}
   level: {fileID: 543606666}
+  pricebtn: {fileID: 0}
   currentSlot: 0
   CurrentArcNum: 0
 --- !u!114 &1657661396
