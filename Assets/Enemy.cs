@@ -163,7 +163,7 @@ public class Enemy : MonoBehaviour
     {
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
 
-        coinCount = gameStateController.gameLevel + 20;
+        coinCount = gameStateController.gameLevel + 10;
         var a = Instantiate(coinPrefab, transform.position, Quaternion.identity);
         goldManager.addGold(coinCount);
         Destroy(a, 0.7f);
