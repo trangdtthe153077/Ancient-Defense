@@ -17,6 +17,7 @@ public class BasicArcherController : MonoBehaviour
     public Button upgradeArcher;
     public int archerLevel = 0;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI priceText;
     public float upgradePrice = 50;
     GoldManager goldManager;
 
@@ -29,7 +30,8 @@ public class BasicArcherController : MonoBehaviour
         archers[0] = arch;
         archers[0].gameObject.GetComponent<Archer>().Basedmg = 5;
         archerLevel++;
-        levelText.SetText(upgradePrice.ToString());
+        priceText.SetText(upgradePrice.ToString());
+        levelText.SetText("Lv" + archerLevel.ToString());
     }
 
     // Update is called once per frame
@@ -75,10 +77,10 @@ public class BasicArcherController : MonoBehaviour
             }
             goldManager.addGold((int)-upgradePrice);
             upgradePrice = 50 * (archerLevel / 5) + 50 * archerLevel;
-            levelText.SetText(upgradePrice.ToString());
+            priceText.SetText(upgradePrice.ToString());
             archerLevel++;
-         
-          
+            levelText.SetText("Lv"+archerLevel.ToString());
+
         }
 
     }

@@ -23,6 +23,7 @@ public class GameStateController : MonoBehaviour
     bool isLoose;
     bool finnishedGame;
     bool toggleCanvas;
+    public Button backToMenu;
     void Start()
     {
         timer = gameObject.GetComponent<Timer>();
@@ -91,7 +92,7 @@ public class GameStateController : MonoBehaviour
     {
         // Change state to Playing when user clicks play button
 
-
+        backToMenu.gameObject.SetActive(false);
         if (playBtn.GetComponentInChildren<Text>().text == "Stop")
         {
             playBtn.GetComponentInChildren<Text>().text = "Play";
@@ -110,6 +111,7 @@ public class GameStateController : MonoBehaviour
     }
     public void ReturnWaiting()
     {
+        backToMenu.gameObject.SetActive(true);
         // Change state to Playing when user clicks play button
         Debug.Log("Return waiting");
         currentState = GameState.Waiting;
@@ -132,6 +134,7 @@ public class GameStateController : MonoBehaviour
     }
     public void ReturnLoose()
     {
+        backToMenu.gameObject.SetActive(true);
         // Change state to Playing when user clicks play button
         Debug.Log("Return Loose");
         currentState = GameState.Waiting;
