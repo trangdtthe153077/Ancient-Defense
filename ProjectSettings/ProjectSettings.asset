@@ -249,7 +249,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/long4/Downloads/Key/user.keystore
+  AndroidKeystoreName: C:/Users/long4/Downloads/FPT/23 Spi/PRU211m/Final project/Key/user.keystore
   AndroidKeyaliasName: alias
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
