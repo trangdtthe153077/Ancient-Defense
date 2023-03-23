@@ -123,6 +123,12 @@ public class GameStateController : MonoBehaviour
 
         levelText.text = "Level: " + gameLevel;
         updateManager.gameObject.SetActive(true);
+
+      var list=  GameObject.FindGameObjectsWithTag("Ally");
+        foreach(var item in list)
+        {
+            Destroy(item);
+        }    
     }
     public void ReturnLoose()
     {
@@ -138,6 +144,11 @@ public class GameStateController : MonoBehaviour
         updateManager.gameObject.SetActive(true);
 
         levelText.text = "Level: " + gameLevel;
+        var list = GameObject.FindGameObjectsWithTag("Ally");
+        foreach (var item in list)
+        {
+            Destroy(item);
+        }
     }
 
     public GameState GetGameState()

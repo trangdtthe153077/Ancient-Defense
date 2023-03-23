@@ -32,7 +32,7 @@ public class Arin : Archer
 
     void Start()
     {
-        archer = gameObject.GetComponent<Archer>();
+        archer = GetComponent<Archer>();
      
         goldManager = GameObject.FindGameObjectWithTag("Gold").GetComponent<GoldManager>();
         Basedmg = 5;
@@ -120,6 +120,7 @@ public class Arin : Archer
         mana += lv;
         Basedmg += 2 * lv;
         upgradeprice = (price * (level - 1) / 5) + price;
+        Debug.Log("The dmg is"+Basedmg);
         archer.Damage = Basedmg;
     }
     public float getLevel()

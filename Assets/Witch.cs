@@ -7,8 +7,10 @@ using static GameStateController;
 
 public class Witch : Archer
 {
+    private Tower tower;
+    public int manatower;
     public float delay = 25f;
-    public float mana = 20;
+    public int mana;
     public float price = 1000;
     public int level = 1;
     public float upgradeprice;
@@ -16,9 +18,11 @@ public class Witch : Archer
     GoldManager goldManager;
     Archer archer;
 
+  public  GameObject skillLight;
 
     void Start()
     {
+        tower = GameObject.FindWithTag("Tower").GetComponent<Tower>();
         archer = gameObject.GetComponent<Archer>();
 
         goldManager = GameObject.FindGameObjectWithTag("Gold").GetComponent<GoldManager>();
@@ -32,7 +36,7 @@ public class Witch : Archer
     // Update is called once per frame
     void Update()
     {
-
+        manatower = tower.getMana();
     }
 
     public bool LevelUp()
@@ -54,8 +58,8 @@ public class Witch : Archer
     {
         lv = lv - 1;
         level += lv;
-        mana += lv*2;
-        Basedmg += lv*2;
+        mana += lv * 2;
+        Basedmg += lv * 2;
         skilldmg = Basedmg * 2 + Basedmg;
         upgradeprice = (price * (level - 1) / 5) + price;
         archer.Damage = Basedmg;
@@ -63,11 +67,30 @@ public class Witch : Archer
     public void OnButtonClick()
     {
 
+        if ((manatower - mana >= 0))
+        {
+            var posRan = new Vector3(Random.RandomRange(0, 11), 8, 100);
+            Instantiate(skillLight, posRan, Quaternion.identity);
+            posRan = new Vector3(Random.RandomRange(0, 11), 8, 100);
+            Instantiate(skillLight, posRan, Quaternion.identity);
+            posRan = new Vector3(Random.RandomRange(0, 11), 8, 100);
+            Instantiate(skillLight, posRan, Quaternion.identity);
+            posRan = new Vector3(Random.RandomRange(0, 11), 8, 100);
+            Instantiate(skillLight, posRan, Quaternion.identity);
+            posRan = new Vector3(Random.RandomRange(0, 11), 8, 100);
+            Instantiate(skillLight, posRan, Quaternion.identity);
+            posRan = new Vector3(Random.RandomRange(0, 11), 8, 100);
+            Instantiate(skillLight, posRan, Quaternion.identity);
+            manatower = manatower - mana;
+            tower.setMana(manatower);
+        }
+  
+
 
     }
-      public float getLevel()
+    public float getLevel()
     {
         return level;
-    }   
+    }
 
 }

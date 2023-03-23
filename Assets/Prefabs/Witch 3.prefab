@@ -133,3 +133,4 @@ MonoBehaviour:
   level: 1
   upgradeprice: 0
   skilldmg: 30
+  skillLight: {fileID: 5180541975648772746, guid: 56de7325d220af043b91df8692801f8a, type: 3}

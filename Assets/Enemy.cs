@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     int basehealth = 10;
     public int maxHealth = 10;
     private int currentHealth;
-    public int basedamage = 10;
+    public int basedamage { get; set; }
     public int damage = 10; // Lượng sát thương gây ra khi tấn công
     public float attackDelay = 2f; // Thời gian giữa hai lần tấn công
     private float attackTimer; // Thời gian từ lần tấn công cuối cùng
@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
     GoldManager goldManager;
     void Start()
     {
+        basedamage = 10;
         gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
         currentHealth = maxHealth;
 
@@ -173,13 +174,14 @@ public class Enemy : MonoBehaviour
             allysPresent = true;
             StopMoving();
         }
-        //else
-        //{
-        //	allysPresent = false;
-        //	StopMoving();
-        //}
+        else
+        {
+            allysPresent = false;
+
+        }
         if (other.gameObject.CompareTag("Ground"))
         {
+
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }

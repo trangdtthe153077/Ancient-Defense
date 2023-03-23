@@ -127,11 +127,20 @@ public class GM : Archer{
       
       
             Archer[] archers = FindObjectsOfType<Archer>();
-        
+
+        GameObject [] archerColor = GameObject.FindGameObjectsWithTag("Archer");
+        foreach(var item in archerColor)
+        {
+            var m_SpriteRenderer = item.GetComponent<SpriteRenderer>();
+            //Set the GameObject's Color quickly to a set Color (blue)
+            m_SpriteRenderer.color = Color.red;
+        }    
         foreach (Archer archer in archers)
         {
             archer.Damage = archer.Damage + archer.Damage * skilldmg;
             Debug.Log("DMG archer:" + archer.Damage);
+           
+      
         }
 
   
@@ -142,12 +151,19 @@ public class GM : Archer{
     public void StopIncreasing()
     {
         Debug.Log("Stop increasing");
-
+        GameObject[] archerColor = GameObject.FindGameObjectsWithTag("Archer");
+        foreach (var item in archerColor)
+        {
+            var m_SpriteRenderer = item.GetComponent<SpriteRenderer>();
+            //Set the GameObject's Color quickly to a set Color (blue)
+            m_SpriteRenderer.color = Color.green;
+        }
         Archer[] archers = FindObjectsOfType<Archer>();
         foreach (Archer archer in archers)
         {
             archer.Damage = archer.Basedmg;
             Debug.Log("DMG archer:" + archer.Damage);
+       
         }
     }
 

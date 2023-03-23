@@ -179,7 +179,9 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnBoss()
     {
-        Instantiate(bossPrefab, transform.position, Quaternion.identity);
+     var boss=   Instantiate(bossPrefab, transform.position, Quaternion.identity);
+        boss.GetComponent<Enemy>().SetLevel(currentLevel);
+
     }
 
     private void SpawnWave()

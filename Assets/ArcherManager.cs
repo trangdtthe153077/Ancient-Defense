@@ -161,6 +161,14 @@ public class ArcherManager : MonoBehaviour
         {
             archer[pos].GetComponent<Arin>().OnButtonClick();
         }
+        else if (archer[pos].tag == "TX")
+        {
+            archer[pos].GetComponent<TX>().OnButtonClick();
+        }
+        else if (archer[pos].tag == "Witch")
+        {
+            archer[pos].GetComponent<Witch>().OnButtonClick();
+        }
     }
     public float PriceArcher(int arcNum)
     {
