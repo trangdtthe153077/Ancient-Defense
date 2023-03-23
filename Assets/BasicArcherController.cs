@@ -28,7 +28,7 @@ public class BasicArcherController : MonoBehaviour
         goldManager = GameObject.FindWithTag("Gold").GetComponent<GoldManager>();
         var arch = Instantiate(archer,new Vector3(pos1.position.x,pos1.position.y,100), Quaternion.identity);
         archers[0] = arch;
-        archers[0].gameObject.GetComponent<Archer>().Basedmg = 5;
+        archers[0].gameObject.GetComponent<Archer>().Basedmg = 1;
         archerLevel++;
         priceText.SetText(upgradePrice.ToString());
         levelText.SetText("Lv" + archerLevel.ToString());
@@ -56,22 +56,25 @@ public class BasicArcherController : MonoBehaviour
                 {
                  
                     var arch = Instantiate(archer, new Vector3(pos2.position.x, pos2.position.y, 100), Quaternion.identity);
-                  
+                    arch.gameObject.GetComponent<Archer>().Basedmg = 1;
                     archers[archerLevel] = arch;
                 }
                 if (a == 2)
                 {
                     var arch = Instantiate(archer, new Vector3(pos3.position.x, pos3.position.y, 100), Quaternion.identity);
+                    arch.gameObject.GetComponent<Archer>().Basedmg = 1;
                     archers[archerLevel] = arch;
                 }
                 if (a == 3)
                 {
                     var arch = Instantiate(archer, new Vector3(pos4.position.x, pos4.position.y, 100), Quaternion.identity);
+                    arch.gameObject.GetComponent<Archer>().Basedmg = 1;
                     archers[archerLevel] = arch;
                 }
                 if (a == 4)
                 {
                     var arch = Instantiate(archer, new Vector3(pos5.position.x, pos5.position.y, 100), Quaternion.identity);
+                    arch.gameObject.GetComponent<Archer>().Basedmg = 1;
                     archers[archerLevel] = arch;
                 }
             }
