@@ -9,7 +9,7 @@ public class SkillLight : MonoBehaviour
     void Start()
     {
 
-        damage  = GetComponent<Archer>().Basedmg*2;
+        damage  = GameObject.FindGameObjectWithTag("Witch").GetComponent<Archer>().Basedmg*2;
     }
 
     // Update is called once per frame

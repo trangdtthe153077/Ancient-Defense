@@ -141,7 +141,7 @@ public class SpawnManager : MonoBehaviour
     }
     public void StartGame()
     {
-        if (currentLevel == 5)
+        if (currentLevel == 6 && enemies.Count==1)
         {
             enemies.Add(enemyFlyPrefab);
             Debug.Log("Add new enemy");
@@ -179,8 +179,10 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnBoss()
     {
+        Debug.Log("Spawn boss");
      var boss=   Instantiate(bossPrefab, transform.position, Quaternion.identity);
         boss.GetComponent<Enemy>().setDmgBoss();
+    
        boss.GetComponent<Enemy>().SetLevel(currentLevel);
 
     }

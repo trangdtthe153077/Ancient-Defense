@@ -23,13 +23,14 @@ public class Enemy : MonoBehaviour
     public bool hasFoundTower = false;
     public GameObject Towerbd;
     public bool allysPresent = false;
-
+    public bool stopForever = false;
     GameStateController gameStateController;
 
     GoldManager goldManager;
     void Start()
     {
         basedamage = 10;
+    
         gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
         currentHealth = maxHealth;
 
@@ -104,6 +105,8 @@ public class Enemy : MonoBehaviour
 
                     }
                 }
+                
+                 
             }
         }
 
@@ -111,7 +114,8 @@ public class Enemy : MonoBehaviour
     public void setDmgBoss()
     {
         basedamage = 25;
-        basehealth =75; 
+        basehealth =75;
+        baseCoin = 100;
     }
     IEnumerator RotateObject()
     {
@@ -130,6 +134,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void Moving()
+    {
+        
+       Debug.Log("tiep tuc di chuyen");
+            rb.WakeUp(); // Kích hoạt tính toán vật lý cho Rigidbody
+      /*      rb.velocity = new Vector2(-2, 0);*/
+        hasFoundTower = false;
+
+      
+    }    
     void StopMoving()
     {
         if (allysPresent)
@@ -140,13 +154,13 @@ public class Enemy : MonoBehaviour
             rb.Sleep();
 
         }
-        else
+ /*       else
         {
             Debug.Log("tiep tuc di chuyen");
             rb.WakeUp(); // Kích hoạt tính toán vật lý cho Rigidbody
             rb.velocity = new Vector2(-2, 0);
 
-        }
+        }*/
     }
 
 
@@ -163,7 +177,8 @@ public class Enemy : MonoBehaviour
     {
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
 
-        coinCount = gameStateController.gameLevel + 10;
+        coinCount = gameStateController.gameLevel + baseCoin;
+        Debug.Log("Boss coin " + coinCount);
         var a = Instantiate(coinPrefab, transform.position, Quaternion.identity);
         goldManager.addGold(coinCount);
         Destroy(a, 0.7f);
@@ -173,18 +188,27 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Ally") || other.gameObject.CompareTag("Tower"))
+        if (other.gameObject.CompareTag("Tower"))
+        {
+            stopForever = true;
+            hasFoundTower = true;
+            allysPresent = true;
+            StopMoving();
+        }
+        if (other.gameObject.CompareTag("Ally"))
         {
             hasFoundTower = true;
             allysPresent = true;
             StopMoving();
         }
-        else
+        else if(stopForever==false)
         {
-            allysPresent = false;
+            Moving();
 
-
-        }
+        }    
+     
+ 
+     
         if (other.gameObject.CompareTag("Ground"))
         {
 
