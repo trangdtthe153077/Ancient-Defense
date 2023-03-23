@@ -80,8 +80,6 @@ public class SoldierMoving : MonoBehaviour
 			// triệu hồi đồng minh đi từ trái sang
 			Vector3 movement = new Vector3(1, 0, 0) * speed * Time.deltaTime;
 			transform.position += movement;
-
-
 		}
         attackTimer += Time.deltaTime;
 		if (attackTimer >= attackSpeed)
