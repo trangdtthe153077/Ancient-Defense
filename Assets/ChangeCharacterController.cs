@@ -164,24 +164,32 @@ public class ChangeCharacterController : MonoBehaviour
         {
             case 1:
                 tagName = "Arin";
-                if(GameObject.FindGameObjectWithTag(tagName)==null)
+                if (GameObject.FindGameObjectWithTag(tagName) == null)
                 {
                     pricebtn.text = "Upgrade -- ";
                     priceBtn.interactable = false;
-                   
-                }    
+
+                }
                 else
                 {
                     var price = manager.PriceArcher(1);
                     pricebtn.text = "Upgrade " + price;
                     priceBtn.interactable = true;
-                }    
-            
+                }
+
                 break;
 
             case 2:
 
                 tagName = "Witch";
+                if (gameStateController.gameLevel > 1)
+                {
+                    changeBtn.interactable = true;
+                }
+                else
+                {
+                    changeBtn.interactable = false;
+                }
                 if (GameObject.FindGameObjectWithTag(tagName) == null)
                 {
                     pricebtn.text = "Upgrade -- ";
@@ -197,6 +205,14 @@ public class ChangeCharacterController : MonoBehaviour
             case 3:
 
                 tagName = "GM";
+                if (gameStateController.gameLevel > 2)
+                {
+                    changeBtn.interactable = true;
+                }
+                else
+                {
+                    changeBtn.interactable = false;
+                }
                 if (GameObject.FindGameObjectWithTag(tagName) == null)
                 {
                     pricebtn.text = "Upgrade -- ";
@@ -211,6 +227,14 @@ public class ChangeCharacterController : MonoBehaviour
                 break;
             case 4:
                 tagName = "TX";
+                if (gameStateController.gameLevel > 3)
+                {
+                    changeBtn.interactable = true;
+                }
+                else
+                {
+                    changeBtn.interactable = false;
+                }
                 if (GameObject.FindGameObjectWithTag(tagName) == null)
                 {
                     pricebtn.text = "Upgrade -- ";
@@ -235,6 +259,14 @@ public class ChangeCharacterController : MonoBehaviour
                 break;
             case 5:
                 tagName = "TH";
+                if (gameStateController.gameLevel > 4)
+                {
+                    changeBtn.interactable = true;
+                }
+                else
+                {
+                    changeBtn.interactable = false;
+                }
                 if (GameObject.FindGameObjectWithTag(tagName) == null)
                 {
                     pricebtn.text = "Upgrade -- ";
@@ -248,7 +280,7 @@ public class ChangeCharacterController : MonoBehaviour
                 }
                 break;
 
-                
+
         }
 
     }

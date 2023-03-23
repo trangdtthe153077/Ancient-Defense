@@ -141,7 +141,7 @@ public class SpawnManager : MonoBehaviour
     }
     public void StartGame()
     {
-        if (currentLevel == 6)
+        if (currentLevel == 5)
         {
             enemies.Add(enemyFlyPrefab);
             Debug.Log("Add new enemy");
