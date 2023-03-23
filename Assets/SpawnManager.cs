@@ -180,7 +180,8 @@ public class SpawnManager : MonoBehaviour
     private void SpawnBoss()
     {
      var boss=   Instantiate(bossPrefab, transform.position, Quaternion.identity);
-        boss.GetComponent<Enemy>().SetLevel(currentLevel);
+        boss.GetComponent<Enemy>().setDmgBoss();
+       boss.GetComponent<Enemy>().SetLevel(currentLevel);
 
     }
 

@@ -9,10 +9,10 @@ public class Enemy : MonoBehaviour
     public float attackDistance = 1f;
 
     private Rigidbody2D rb;
-    int basehealth = 10;
+    int basehealth = 20;
     public int maxHealth = 10;
     private int currentHealth;
-    public int basedamage { get; set; }
+    public int basedamage;
     public int damage = 10; // Lượng sát thương gây ra khi tấn công
     public float attackDelay = 2f; // Thời gian giữa hai lần tấn công
     private float attackTimer; // Thời gian từ lần tấn công cuối cùng
@@ -108,6 +108,11 @@ public class Enemy : MonoBehaviour
         }
 
     }
+    public void setDmgBoss()
+    {
+        basedamage = 25;
+        basehealth =75; 
+    }
     IEnumerator RotateObject()
     {
         int numRotations = 0;
@@ -177,6 +182,7 @@ public class Enemy : MonoBehaviour
         else
         {
             allysPresent = false;
+
 
         }
         if (other.gameObject.CompareTag("Ground"))

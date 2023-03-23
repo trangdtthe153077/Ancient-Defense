@@ -95,6 +95,7 @@ public class GameStateController : MonoBehaviour
         backToMenu.gameObject.SetActive(false);
         if (playBtn.GetComponentInChildren<Text>().text == "Stop")
         {
+            
             playBtn.GetComponentInChildren<Text>().text = "Play";
             Debug.Log("Stop game");
             Debug.Log(currentState + "Playing");
@@ -102,7 +103,9 @@ public class GameStateController : MonoBehaviour
         else
         {
             playBtn.GetComponentInChildren<Text>().text = "Stop";
+            playBtn.gameObject.SetActive(false);
             playBtn.interactable = false;
+            playBtn.gameObject.SetActive(false);
             currentState = GameState.Playing;
             Debug.Log("Playing");
         }
@@ -111,6 +114,8 @@ public class GameStateController : MonoBehaviour
     }
     public void ReturnWaiting()
     {
+        playBtn.gameObject.SetActive(true);
+
         backToMenu.gameObject.SetActive(true);
         // Change state to Playing when user clicks play button
         Debug.Log("Return waiting");
@@ -134,6 +139,7 @@ public class GameStateController : MonoBehaviour
     }
     public void ReturnLoose()
     {
+        playBtn.gameObject.SetActive(true);
         backToMenu.gameObject.SetActive(true);
         // Change state to Playing when user clicks play button
         Debug.Log("Return Loose");
