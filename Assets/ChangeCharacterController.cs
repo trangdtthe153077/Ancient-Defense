@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static GameStateController;
 
 public class ChangeCharacterController : MonoBehaviour
@@ -13,15 +14,16 @@ public class ChangeCharacterController : MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI content;
     public TextMeshProUGUI level;
-<<<<<<< HEAD
-=======
     public Text pricebtn;
->>>>>>> parent of 077d4e0 (fix bug)
+    public Button priceBtn;
+    public Button changeBtn;
     public int currentSlot;
     public int CurrentArcNum;
 
     GameStateController gameStateController;
     SavingObject savingObject;
+
+    private float priceUpgradeOrBuy;
     void Start()
     {
         gameStateController = GameObject.FindWithTag("GameState").GetComponent<GameStateController>();
@@ -29,7 +31,7 @@ public class ChangeCharacterController : MonoBehaviour
         manager = GameObject.FindGameObjectWithTag("ArcherManager").GetComponent<ArcherManager>();
         /*
                 canvasDetails = GameObject.FindGameObjectWithTag("Char-Details")?.GetComponent<Canvas>();*/
-
+        canvas.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -49,172 +51,100 @@ public class ChangeCharacterController : MonoBehaviour
 
     public void OnClickSlot1()
     {
-    
-            if (canvasDetails.gameObject.activeSelf == false)
-            {
-                canvas.gameObject.SetActive(false);
 
-                title.SetText("Arin");
-                content.SetText("Nhan vat chinh");
-                level.SetText("Level: 20");
+        if (canvasDetails.gameObject.activeSelf == false)
+        {
 
-<<<<<<< HEAD
 
-                savingObject.setCurrentArcNum(1);
-                canvasDetails.gameObject.SetActive(true);
-            }
-=======
-         
             canvas.gameObject.SetActive(false);
 
             title.SetText("Arin");
-            content.SetText("Arin is the leader of the army against monsters and the main character in the story. He is a talented and careful warrior, full of faith and ready to fight to protect humanity.");
+            content.SetText("Summon warriors to help defend the tower");
 
 
             savingObject.setCurrentArcNum(1);
             canvasDetails.gameObject.SetActive(true);
         }
-  
-     level.SetText("Level: " + manager.LevelArcher(1));
-      BuyOrUpgrade(1);
->>>>>>> parent of 077d4e0 (fix bug)
+
+        level.SetText("Level: " + manager.LevelArcher(1));
+        BuyOrUpgrade(1);
 
 
 
     }
     public void OnClickSlot2()
     {
-<<<<<<< HEAD
-       
-            if (canvasDetails.gameObject.activeSelf == false)
-            {
-                canvas.gameObject.SetActive(false);
-                Debug.Log("Why");
-                title.SetText("Witch");
-                content.SetText("Ac nhu quy");
-                level.SetText("Level: 20");
-                savingObject.setCurrentArcNum(2);
-                canvasDetails.gameObject.SetActive(true);
-      
-        }
-=======
 
         if (canvasDetails.gameObject.activeSelf == false)
         {
-         
+
             canvas.gameObject.SetActive(false);
             Debug.Log("Why");
             title.SetText("Witch");
-            content.SetText("Ac nhu quy");
-      
+            content.SetText("Summons lightning to attack the nearest enemy");
+
             savingObject.setCurrentArcNum(2);
             canvasDetails.gameObject.SetActive(true);
 
         }
-    
- level.SetText("Level: " + manager.LevelArcher(2));
+
+        level.SetText("Level: " + manager.LevelArcher(2));
         ///
-      BuyOrUpgrade(2);
->>>>>>> parent of 077d4e0 (fix bug)
+        BuyOrUpgrade(2);
 
     }
 
     public void OnClickSlot3()
     {
-<<<<<<< HEAD
-        
-            if (canvasDetails.gameObject.activeSelf == false)
-            {
-                canvas.gameObject.SetActive(false);
-                Debug.Log("Why");
-                title.SetText("Giam muc");
-                content.SetText("Lam viec o chua");
-                level.SetText("Level: 20");
-                savingObject.setCurrentArcNum(3);
-                canvasDetails.gameObject.SetActive(true);
-         
-        }
-=======
 
         if (canvasDetails.gameObject.activeSelf == false)
         {
-            
+
             canvas.gameObject.SetActive(false);
             Debug.Log("Why");
-            title.SetText("Giam muc");
-            content.SetText("Lam viec o chua");
-        
+            title.SetText("Bishop");
+            content.SetText("Increase damage to archers");
+
             savingObject.setCurrentArcNum(3);
             canvasDetails.gameObject.SetActive(true);
 
         }
-    
+
         level.SetText("Level: " + manager.LevelArcher(3));
-     BuyOrUpgrade(3);
->>>>>>> parent of 077d4e0 (fix bug)
+        BuyOrUpgrade(3);
 
     }
     public void OnClickSlot4()
     {
-<<<<<<< HEAD
-      
-            if (canvasDetails.gameObject.activeSelf == false)
-            {
-                canvas.gameObject.SetActive(false);
-                Debug.Log("Why");
-                title.SetText("Thien xa");
-                content.SetText("Lam viec o chua");
-                level.SetText("Level: 20");
-                savingObject.setCurrentArcNum(4);
-                canvasDetails.gameObject.SetActive(true);
-    
-        }
-=======
 
         if (canvasDetails.gameObject.activeSelf == false)
         {
-            
+
             canvas.gameObject.SetActive(false);
             Debug.Log("Why");
-            title.SetText("Thien xa");
-            content.SetText("Lam viec o chua");
-    
+            title.SetText("Marksman");
+            content.SetText("Shoots arrows continuously at enemies at super fast speed");
+
             savingObject.setCurrentArcNum(4);
             canvasDetails.gameObject.SetActive(true);
 
         }
-      
+
         level.SetText("Level: " + manager.LevelArcher(4));
-     BuyOrUpgrade(4);
->>>>>>> parent of 077d4e0 (fix bug)
+        BuyOrUpgrade(4);
     }
 
     public void OnClickSlot5()
     {
-<<<<<<< HEAD
-        
-            if (canvasDetails.gameObject.activeSelf == false)
-            {
-                canvas.gameObject.SetActive(false);
-                Debug.Log("Why");
-                title.SetText("Nguoi trieu hoi");
-                content.SetText("Trieu hoi golem tan cong");
-                level.SetText("Level: 20");
-                savingObject.setCurrentArcNum(5);
-                canvasDetails.gameObject.SetActive(true);
-     
-        }
-    
-=======
 
         if (canvasDetails.gameObject.activeSelf == false)
         {
-           
+
             canvas.gameObject.SetActive(false);
             Debug.Log("Why");
-            title.SetText("Nguoi trieu hoi");
-            content.SetText("Trieu hoi golem tan cong");
-          
+            title.SetText("Summoner");
+            content.SetText("Summon golems to support castle defense");
+
             savingObject.setCurrentArcNum(5);
             canvasDetails.gameObject.SetActive(true);
 
@@ -222,81 +152,139 @@ public class ChangeCharacterController : MonoBehaviour
 
         level.SetText("Level: " + manager.LevelArcher(5));
 
-      BuyOrUpgrade(5);
+        BuyOrUpgrade(5);
     }
 
     public void BuyOrUpgrade(int arcNum)
 
     {
         string tagName;
+
         switch (arcNum)
         {
             case 1:
                 tagName = "Arin";
-                if (GameObject.FindGameObjectWithTag("Arin") != null)
-
+                if (GameObject.FindGameObjectWithTag(tagName) == null)
                 {
-                    pricebtn.text = "Upgrade " + manager.PriceArcher(1);
+                    pricebtn.text = "Upgrade -- ";
+                    priceBtn.interactable = false;
+
                 }
                 else
                 {
-                    pricebtn.text = "Buy Archer " + manager.PriceArcher(1);
+                    var price = manager.PriceArcher(1);
+                    pricebtn.text = "Upgrade " + price;
+                    priceBtn.interactable = true;
                 }
+
                 break;
+
             case 2:
 
                 tagName = "Witch";
-                if (GameObject.FindGameObjectWithTag("Witch") != null)
-
+                if (gameStateController.gameLevel > 1)
                 {
-                    pricebtn.text = "Upgrade " + manager.PriceArcher(2);
+                    changeBtn.interactable = true;
                 }
                 else
                 {
-                    pricebtn.text = "Buy Archer " + manager.PriceArcher(2);
+                    changeBtn.interactable = false;
+                }
+                if (GameObject.FindGameObjectWithTag(tagName) == null)
+                {
+                    pricebtn.text = "Upgrade -- ";
+                    priceBtn.interactable = false;
+                }
+                else
+                {
+                    var price = manager.PriceArcher(2);
+                    pricebtn.text = "Upgrade " + price;
+                    priceBtn.interactable = true;
                 }
                 break;
             case 3:
 
                 tagName = "GM";
-                if (GameObject.FindGameObjectWithTag("TX") != null)
+                if (gameStateController.gameLevel > 2)
                 {
-                    pricebtn.text = "Upgrade " + manager.PriceArcher(3);
+                    changeBtn.interactable = true;
                 }
                 else
                 {
-                    pricebtn.text = "Buy Archer " + manager.PriceArcher(3);
+                    changeBtn.interactable = false;
+                }
+                if (GameObject.FindGameObjectWithTag(tagName) == null)
+                {
+                    pricebtn.text = "Upgrade -- ";
+                    priceBtn.interactable = false;
+                }
+                else
+                {
+                    var price = manager.PriceArcher(3);
+                    pricebtn.text = "Upgrade " + price;
+                    priceBtn.interactable = true;
                 }
                 break;
             case 4:
-
-                if (GameObject.FindGameObjectWithTag("TX") != null)
+                tagName = "TX";
+                if (gameStateController.gameLevel > 3)
                 {
-                    pricebtn.text = "Upgrade " + manager.PriceArcher(4);
+                    changeBtn.interactable = true;
                 }
                 else
                 {
-                    pricebtn.text = "Buy Archer " + manager.PriceArcher(4);
+                    changeBtn.interactable = false;
                 }
+                if (GameObject.FindGameObjectWithTag(tagName) == null)
+                {
+                    pricebtn.text = "Upgrade -- ";
+                    priceBtn.interactable = false;
+                }
+                else
+                {
+                    var price = manager.PriceArcher(4);
+                    pricebtn.text = "Upgrade " + price;
+                    priceBtn.interactable = true;
+                }
+                /*       if (manager.LevelArcher(4) == 0)
+                       {
+                           pricebtn.text = "Buy Archer " + price;
+
+                       }
+                       else
+                       {
+                           pricebtn.text = "Upgrade " + price;
+
+                       }*/
                 break;
             case 5:
-
                 tagName = "TH";
-                var e = GameObject.FindGameObjectWithTag(tagName).GetComponent<TH>();
-                if (e != null)
+                if (gameStateController.gameLevel > 4)
                 {
-                    pricebtn.text = "Upgrade " + manager.PriceArcher(5);
+                    changeBtn.interactable = true;
                 }
                 else
                 {
-                    pricebtn.text = "Buy Archer " + manager.PriceArcher(5);
+                    changeBtn.interactable = false;
+                }
+                if (GameObject.FindGameObjectWithTag(tagName) == null)
+                {
+                    pricebtn.text = "Upgrade -- ";
+                    priceBtn.interactable = false;
+                }
+                else
+                {
+                    var price = manager.PriceArcher(5);
+                    pricebtn.text = "Upgrade " + price;
+                    priceBtn.interactable = true;
                 }
                 break;
+
+
         }
 
->>>>>>> parent of 077d4e0 (fix bug)
     }
-   
+
     public void ChangePos()
     {
         currentSlot = savingObject.getCurrentSlot();
@@ -305,6 +293,7 @@ public class ChangeCharacterController : MonoBehaviour
 
         manager.ChangeArcher(CurrentArcNum, currentSlot);
     }
+
     public void UseSkill()
     {
         currentSlot = savingObject.getCurrentSlot();
@@ -316,15 +305,11 @@ public class ChangeCharacterController : MonoBehaviour
 
     public void Upgrade()
     {
-<<<<<<< HEAD
 
-=======
-     
         CurrentArcNum = savingObject.getCurrentArcNum();
         Debug.Log("Current num: " + CurrentArcNum + "," + currentSlot);
 
         manager.UpgradeArcher(CurrentArcNum);
->>>>>>> parent of 077d4e0 (fix bug)
     }
     public void SetPosNum(int num)
     {

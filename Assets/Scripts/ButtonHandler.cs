@@ -11,8 +11,10 @@ public class ButtonHandler : MonoBehaviour
     private  ChangeCharacterController changeCharacterCanvas;
     Tower tower;
     ArcherManager manager;
+    BasicArcherController basicArcher;
     void Awake()
     {
+        basicArcher = GameObject.FindGameObjectWithTag("BasicArcher").GetComponent<BasicArcherController>();
         manager = GameObject.FindGameObjectWithTag("ArcherManager").GetComponent<ArcherManager>();
         var a = GameObject.FindGameObjectWithTag("ChangeChar");
         changeCharacterCanvas = a.GetComponent<ChangeCharacterController>();
@@ -108,5 +110,10 @@ public class ButtonHandler : MonoBehaviour
     public void UpdateTower()
     {
         tower.LevelUp();
+    }
+
+    public void UpdateLevelArcher()
+    {
+        basicArcher.LevelUp();
     }
 }

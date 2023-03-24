@@ -69,8 +69,6 @@ public class SoldierMoving : MonoBehaviour
 			// triệu hồi đồng minh đi từ trái sang
 			Vector3 movement = new Vector3(1, 0, 0) * speed * Time.deltaTime;
 			transform.position += movement;
-
-
 		}
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
 		foreach (Collider2D collider in colliders)

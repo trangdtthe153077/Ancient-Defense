@@ -24,7 +24,7 @@ public class AutoArcher : MonoBehaviour
         timer += Time.deltaTime;
 
         // Check if it's time to fire
-        if (timer >= fireInterval)
+        if (timer >= archer.Speed)
         {
             // Find the closest enemy within range
             GameObject closestEnemy = FindClosestEnemy();

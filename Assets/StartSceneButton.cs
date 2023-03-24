@@ -16,17 +16,16 @@ public class StartSceneButton : MonoBehaviour
     {
         
     }
-    public void QuitGame()
+    public void Quit()
     {
         Application.Quit();
-        Debug.Log("Quit1");
     }
     public void LoadGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
     }
-    public void BackToMenu()
+    public void BackToMeNu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
