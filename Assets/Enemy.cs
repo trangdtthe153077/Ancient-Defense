@@ -177,8 +177,7 @@ public class Enemy : MonoBehaviour
     {
         // Add code here to handle enemy death (e.g. play death animation, spawn loot, etc.)
 
-        coinCount = gameStateController.gameLevel + baseCoin;
-        Debug.Log("Boss coin " + coinCount);
+
 
         coinCount = gameStateController.gameLevel + 20;
         var a = Instantiate(coinPrefab, transform.position, Quaternion.identity);
