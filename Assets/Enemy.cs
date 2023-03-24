@@ -179,6 +179,8 @@ public class Enemy : MonoBehaviour
 
         coinCount = gameStateController.gameLevel + baseCoin;
         Debug.Log("Boss coin " + coinCount);
+
+        coinCount = gameStateController.gameLevel + 20;
         var a = Instantiate(coinPrefab, transform.position, Quaternion.identity);
         goldManager.addGold(coinCount);
         Destroy(a, 0.7f);
